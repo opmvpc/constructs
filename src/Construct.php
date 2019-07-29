@@ -2,6 +2,8 @@
 
 namespace Opmvpc\Constructs;
 
+use Opmvpc\Constructs\Lists\ArrayList;
+
 /**
 *  A sample class
 *
@@ -29,5 +31,10 @@ class Construct
     public function method1($param1)
     {
         return "Hello World";
+    }
+
+    public static function arrayList()
+    {
+        return new ArrayList();
     }
 }

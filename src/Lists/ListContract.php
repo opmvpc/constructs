@@ -7,8 +7,8 @@ namespace Opmvpc\Constructs\Lists;
  */
 interface ListContract {
     public function size() : int;
-    public function contains(Item $item) : bool;
-    public function add(Item $item) : void;
-    public function remove(Item $item) : void;
-    public function get(int $i) : Item;
+    public function contains($item) : bool;
+    public function add($item) : void;
+    public function remove($item) : void;
+    public function get(int $i);
 }
