@@ -19,6 +19,6 @@ class ConstructTest extends BaseTestCase
         $this->assertInstanceOf(ArrayList::class, $arrayList);
         
         $arrayList->add("hello");
-        $this->assertEquals($arrayList->getElements(), ["hello"]);
+        $this->assertEquals($arrayList->toArray(), ["hello"]);
     }
 }

@@ -11,4 +11,5 @@ abstract class AbstractList implements ListContract
     abstract public function add($item) : void;
     abstract public function remove($item) : void;
     abstract public function get(int $i);
+    abstract public function toArray() : array;
 }

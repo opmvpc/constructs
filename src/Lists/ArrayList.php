@@ -27,8 +27,7 @@ class ArrayList extends AbstractList
     /**
      * Base constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->size = 0;
         $this->elements = [];
     }
@@ -38,8 +37,7 @@ class ArrayList extends AbstractList
      *
      * @return integer
      */
-    public function size() : int
-    {
+    public function size() : int {
         return $this->size;
     }
 
@@ -50,8 +48,7 @@ class ArrayList extends AbstractList
      * @param $item
      * @return boolean
      */
-    public function contains($item) : bool
-    {
+    public function contains($item) : bool {
         if (\array_search($item, $this->elements) !== false) {
             return true;
         }
@@ -65,8 +62,7 @@ class ArrayList extends AbstractList
      * @param $item
      * @return void
      */
-    public function add($item) : void
-    {
+    public function add($item) : void {
         $this->elements[] = $item;
         $this->size += 1;
     }
@@ -79,8 +75,7 @@ class ArrayList extends AbstractList
      * @param $item
      * @return void
      */
-    public function remove($item) : void
-    {
+    public function remove($item) : void {
         $key = \array_search($item, $this->elements);
         if ($key !== false) {
             unset($this->elements[$key]);
@@ -96,8 +91,7 @@ class ArrayList extends AbstractList
      * @param integer $i
      * @return void
      */
-    public function get(int $i)
-    {
+    public function get(int $i) {
         try {
             return $this->elements[$i];
         } catch (\Throwable $th) {
@@ -110,8 +104,7 @@ class ArrayList extends AbstractList
      *
      * @return array
      */
-    public function getElements()
-    {
+    public function toArray() : array {
         return $this->elements;
     }
 }

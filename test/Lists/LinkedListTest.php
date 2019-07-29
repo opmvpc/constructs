@@ -3,30 +3,29 @@
 namespace Opmvpc\Constructs\Test\Lists;
 
 use OutOfBoundsException;
-use Opmvpc\Constructs\Lists\ArrayList;
 use Opmvpc\Constructs\Test\BaseTestCase;
+use Opmvpc\Constructs\Lists\LinkedList;
 
-class ArrayListTest extends BaseTestCase
+class LinkedListTest extends BaseTestCase
 {
     const TEST_ARRAY = [3, 6, 9, 3];
 
     private function createList()
     {
-        return new ArrayList();
+        return new LinkedList();
     }
 
     public function testConstruct()
     {
         $list = $this->createList();
-        $this->assertObjectHasAttribute('elements', $list);
-        $this->assertIsArray($list->toArray());
+        $this->assertObjectHasAttribute('size', $list);
+        $this->assertObjectHasAttribute('head', $list);
     }
 
     public function testSizeEmptyList()
     {
         $list = $this->createList();
 
-        $this->assertEquals(count($list->toArray()), 0);
         $this->assertEquals($list->size(), 0);
     }
 
@@ -36,7 +35,6 @@ class ArrayListTest extends BaseTestCase
 
         $list->add(3);
 
-        $this->assertEquals(count($list->toArray()), $list->size());
         $this->assertEquals($list->size(), 1);
     }
     
@@ -49,7 +47,7 @@ class ArrayListTest extends BaseTestCase
         $list->add(9);
         $list->add(3);
     
-        $this->assertEquals(count($list->toArray()), 4);
+        $this->assertEquals($list->size(), 4);
         $this->assertEquals($list->toArray(), self::TEST_ARRAY);
     }
 
@@ -73,14 +71,7 @@ class ArrayListTest extends BaseTestCase
     {
         $list = $this->createList();
         $list->add(2);
-        $list->remove(2);
-
-        $this->assertEquals(count($list->toArray()), 0);
-    }
-    
-    public function testListRemoveFail()
-    {
-        $list = $this->createList();
+        
         $this->expectException(OutOfBoundsException::class);
         $list->remove(2);
     }
