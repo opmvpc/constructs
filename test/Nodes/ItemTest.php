@@ -1,9 +1,9 @@
 <?php
 
-namespace Opmvpc\Structures\Test\Nodes;
+namespace Opmvpc\Constructs\Test\Nodes;
 
-use Opmvpc\Structures\Nodes\Item;
-use Opmvpc\Structures\Test\BaseTestCase;
+use Opmvpc\Constructs\Nodes\Item;
+use Opmvpc\Constructs\Test\BaseTestCase;
 
 class ItemTest extends BaseTestCase {
 

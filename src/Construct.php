@@ -1,6 +1,6 @@
 <?php
 
-namespace Opmvpc\Structures;
+namespace Opmvpc\Constructs;
 
 /**
 *  A sample class
@@ -10,7 +10,7 @@ namespace Opmvpc\Structures;
 *
 *  @author yourname
 */
-class Structures
+class Construct
 {
 
    /**  @var string $m_SampleProperty define here what this variable is for, do this for every instance variable */

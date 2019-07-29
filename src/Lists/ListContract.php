@@ -1,6 +1,6 @@
 <?php
 
-namespace Opmvpc\Structures\Lists;
+namespace Opmvpc\Constructs\Lists;
 
 /**
  * List interface

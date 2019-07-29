@@ -1,8 +1,8 @@
 <?php
 
-namespace Opmvpc\Structures\Test\Lists;
+namespace Opmvpc\Constructs\Test\Lists;
 
-use Opmvpc\Structures\Test\BaseTestCase;
+use Opmvpc\Constructs\Test\BaseTestCase;
 
 class ArrayListTest extends BaseTestCase
 {

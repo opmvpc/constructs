@@ -1,5 +1,5 @@
 {
-    "name": "opmvpc/structures",
+    "name": "opmvpc/constructs",
     "description": "Data structures",
     "keywords": ["data structures", "package"],
     "license": "MIT",
@@ -18,8 +18,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Opmvpc\\Structures\\": "src/",
-            "Opmvpc\\Structures\\Test\\": "test/"
+            "Opmvpc\\Constructs\\": "src/",
+            "Opmvpc\\Constructs\\Test\\": "test/"
         }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Opmvpc\Structures\Nodes;
+namespace Opmvpc\Constructs\Nodes;
 
 /**
  * Item of a List

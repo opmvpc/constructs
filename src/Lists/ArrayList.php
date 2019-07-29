@@ -1,9 +1,9 @@
 <?php
 
-namespace Opmvpc\Structures\Lists;
+namespace Opmvpc\Constructs\Lists;
 
-use Opmvpc\Structures\Nodes\Item;
-use Opmvpc\Structures\Lists\ListContract;
+use Opmvpc\Constructs\Nodes\Item;
+use Opmvpc\Constructs\Lists\ListContract;
 
 /**
  * Array based List implementation
