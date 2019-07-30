@@ -3,54 +3,37 @@
 namespace Opmvpc\Constructs\Stacks;
 
 use Opmvpc\Constructs\Contracts\StackContract;
+use Opmvpc\Constructs\Nodes\LinkedNode;
 use OutOfBoundsException;
 
 /**
  * Array based List implementation
  */
-final class ArrayStack implements StackContract
+final class LinkedStack implements StackContract
 {
     /**
-     * List size
+     * Head of the Stack
      *
-     * @var int
+     * @var LinkedNode
      */
-    private $size;
-
-    /**
-     * Elements List
-     *
-     * @var array
-     */
-    private $elements;
+    private $head;
 
     /**
      * Base constructor
      */
     private function __construct()
     {
-        $this->size = 0;
-        $this->elements = [];
+        $this->head = null;
     }
 
     /**
      * Create a new Empty LinkedList
      *
-     * @return ArrayStack
+     * @return LinkedStack
      */
     public static function make(): StackContract
     {
-        return new ArrayStack();
-    }
-
-    /**
-     * Size of the list
-     *
-     * @return int
-     */
-    public function size(): int
-    {
-        return $this->size;
+        return new LinkedStack();
     }
 
     /**
@@ -61,7 +44,7 @@ final class ArrayStack implements StackContract
      */
     public function isEmpty(): bool
     {
-        return $this->size === 0 ?? false ;
+        return is_null($this->head) ?? false ;
     }
 
     /**
@@ -73,9 +56,15 @@ final class ArrayStack implements StackContract
      */
     public function push($item): StackContract
     {
-        $this->size += 1;
+        $newNode = new LinkedNode($item);
 
-        array_push($this->elements, $item);
+        if (is_null($this->head)) {
+            $this->head = $newNode;
+            return $this;
+        }
+
+        $newNode->setNext($this->head);
+        $this->head = $newNode;
 
         return $this;
     }
@@ -89,13 +78,13 @@ final class ArrayStack implements StackContract
      */
     public function pop(): StackContract
     {
-        if ($this->size === 0) {
-            throw new OutOfBoundsException('Constructs ArrayStack.pop()');
+        if ($this->isEmpty()) {
+            throw new OutOfBoundsException('Constructs LinkedStack.pop()');
             return $this;
         }
 
-        $this->size -= 1;
-        array_pop($this->elements);
+        $newHead = $this->head->getNext();
+        $this->head = $newHead;
 
         return $this;
     }
@@ -113,20 +102,27 @@ final class ArrayStack implements StackContract
             throw new OutOfBoundsException('Constructs ArrayStack.top()');
         }
 
-        return $this->elements[$this->size-1];
+        return $this->head->getValue();
     }
 
     /**
      * Get structures items as an array
      *
-     * @return array $array
+     * @return array
      */
     public function toArray(): array
     {
         $array = [];
+        if (is_null($this->head)) {
+            return $array;
+        }
 
-        for ($i=0; $i < $this->size; $i++) {
-            $array[] = $this->elements[$i];
+        $currentItem = $this->head;
+        $array[] = $currentItem->getValue();
+
+        while ($currentItem->getNext() !== null) {
+            $currentItem = $currentItem->getNext();
+            $array[] = $currentItem->getValue();
         }
 
         return $array;

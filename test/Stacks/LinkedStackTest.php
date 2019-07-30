@@ -3,24 +3,22 @@
 namespace Opmvpc\Constructs\Test\Stacks;
 
 use OutOfBoundsException;
-use Opmvpc\Constructs\Stacks\ArrayStack;
+use Opmvpc\Constructs\Stacks\LinkedStack;
 use Opmvpc\Constructs\Test\BaseTestCase;
 
-class ArrayStackTest extends BaseTestCase
+class LinkedStackTest extends BaseTestCase
 {
     const TEST_ARRAY = [3, 6, 9, 3];
 
     private function createStructure()
     {
-        return ArrayStack::make();;
+        return LinkedStack::make();
     }
 
     public function testConstruct()
     {
         $stack = $this->createStructure();
-        $this->assertObjectHasAttribute('size', $stack);
-        $this->assertObjectHasAttribute('elements', $stack);
-        $this->assertIsArray($stack->toArray());
+        $this->assertObjectHasAttribute('head', $stack);
     }
 
     public function testSizeEmptyStack()
@@ -28,7 +26,6 @@ class ArrayStackTest extends BaseTestCase
         $stack = $this->createStructure();
 
         $this->assertEquals(0, count($stack->toArray()));
-        $this->assertEquals(0, $stack->size());
     }
 
     public function testIsEmpty()
@@ -51,16 +48,15 @@ class ArrayStackTest extends BaseTestCase
         $stack = $this->createStructure()
             ->push(3);
 
-        $this->assertEquals(count($stack->toArray()), $stack->size());
-        $this->assertEquals(1, $stack->size());
+        $this->assertEquals(1, count($stack->toArray()));
     }
 
     public function testPushItems()
     {
         $stack = $this->createStructure()
             ->push(3)
-            ->push(6)
             ->push(9)
+            ->push(6)
             ->push(3);
 
         $this->assertEquals(4, count($stack->toArray()));

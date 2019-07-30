@@ -2,15 +2,15 @@
 
 namespace Opmvpc\Constructs\Lists;
 
-use OutOfBoundsException;
 use BadMethodCallException;
+use Opmvpc\Constructs\Contracts\ListContract;
 use Opmvpc\Constructs\Nodes\LinkedNode;
-use Opmvpc\Constructs\Lists\AbstractList;
+use OutOfBoundsException;
 
 /**
  * Mutable LinkedList
  */
-class LinkedList extends AbstractList
+final class LinkedList implements ListContract
 {
     /**
      * Head of LinkedList
@@ -29,7 +29,8 @@ class LinkedList extends AbstractList
     /**
      * Base constructor
      */
-    private function __construct() {
+    private function __construct()
+    {
         $this->head = null;
         $this->size = 0;
     }
@@ -39,7 +40,7 @@ class LinkedList extends AbstractList
      *
      * @return ListContract
      */
-    public static function make() : ListContract
+    public static function make(): ListContract
     {
         return new LinkedList();
     }
@@ -47,9 +48,9 @@ class LinkedList extends AbstractList
     /**
      * Size of the list
      *
-     * @return integer
+     * @return int
      */
-    public function size() : int
+    public function size(): int
     {
         return $this->size;
     }
@@ -59,13 +60,14 @@ class LinkedList extends AbstractList
      * sinon renvoie false
      *
      * @param $item
-     * @return boolean
+     *
+     * @return bool
      */
-    public function contains($item) : bool
+    public function contains($item): bool
     {
         $currentItem = $this->head;
         for ($i=0; $i < $this->size; $i++) {
-            if ($currentItem->getValue() == $item) {
+            if ($currentItem->getValue() === $item) {
                 return true;
             }
             $currentItem = $currentItem->getNext();
@@ -78,9 +80,10 @@ class LinkedList extends AbstractList
      * size augmente de 1
      *
      * @param $item
+     *
      * @return ListContract $this
      */
-    public function add($item) : ListContract
+    public function add($item): ListContract
     {
         $newNode = new LinkedNode($item);
         $this->size += 1;
@@ -94,6 +97,7 @@ class LinkedList extends AbstractList
         while ($currentItem->getNext() !== null) {
             $currentItem = $currentItem->getNext();
         }
+
         $currentItem->setNext($newNode);
 
         return $this;
@@ -103,10 +107,12 @@ class LinkedList extends AbstractList
      * @throws BadMethodCallException
      *
      * @param $item
+     *
      * @return ListContract $this
      */
-    public function remove($item) : ListContract
+    public function remove($item = null): ListContract
     {
+        $item;
         throw new BadMethodCallException('Unsupported Operation');
 
         return $this;
@@ -116,7 +122,9 @@ class LinkedList extends AbstractList
      * Get element positionned at elements[$i]
      *
      * @requires 0 <= $index < $this->size()
-     * @param integer $index
+     *
+     * @param int $index
+     *
      * @return $value
      */
     public function get(int $index)
@@ -124,7 +132,6 @@ class LinkedList extends AbstractList
         $currentItem = $this->head;
 
         for ($i=0; $i <= $index; $i++) {
-
             if (is_null($currentItem)) {
                 throw new OutOfBoundsException('Constructs ArrayList.get()');
                 return;
@@ -143,7 +150,7 @@ class LinkedList extends AbstractList
      *
      * @return array $array
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         $array = [];
         $currentItem = $this->head;
@@ -156,5 +163,4 @@ class LinkedList extends AbstractList
 
         return $array;
     }
-
 }

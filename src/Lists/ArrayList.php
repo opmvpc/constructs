@@ -2,13 +2,13 @@
 
 namespace Opmvpc\Constructs\Lists;
 
+use Opmvpc\Constructs\Contracts\ListContract;
 use OutOfBoundsException;
-use Opmvpc\Constructs\Lists\AbstractList;
 
 /**
  * Mutable Array based List implementation
  */
-class ArrayList extends AbstractList
+final class ArrayList implements ListContract
 {
     /**
      * List size
@@ -27,9 +27,10 @@ class ArrayList extends AbstractList
     /**
      * Base constructor
      */
-    private function __construct() {
-            $this->size = 0;
-            $this->elements = [];
+    private function __construct()
+    {
+        $this->size = 0;
+        $this->elements = [];
     }
 
     /**
@@ -37,7 +38,7 @@ class ArrayList extends AbstractList
      *
      * @return ListContract
      */
-    public static function make() : ListContract
+    public static function make(): ListContract
     {
         return new ArrayList();
     }
@@ -45,9 +46,10 @@ class ArrayList extends AbstractList
     /**
      * Size of the list
      *
-     * @return integer
+     * @return int
      */
-    public function size() : int {
+    public function size(): int
+    {
         return $this->size;
     }
 
@@ -56,9 +58,11 @@ class ArrayList extends AbstractList
      * sinon renvoie false
      *
      * @param $item
-     * @return boolean
+     *
+     * @return bool
      */
-    public function contains($item) : bool {
+    public function contains($item): bool
+    {
         if (\array_search($item, $this->elements) !== false) {
             return true;
         }
@@ -70,9 +74,11 @@ class ArrayList extends AbstractList
      * size augmente de 1
      *
      * @param $item
+     *
      * @return void
      */
-    public function add($item) : ListContract {
+    public function add($item): ListContract
+    {
         $this->elements[] = $item;
         $this->size += 1;
 
@@ -85,9 +91,13 @@ class ArrayList extends AbstractList
      * size diminue de 1
      *
      * @param $item
+     *
+     * @throws OutOfBoundsException
+     *
      * @return void
      */
-    public function remove($item) : ListContract {
+    public function remove($item): ListContract
+    {
         $key = \array_search($item, $this->elements);
         if ($key !== false) {
             unset($this->elements[$key]);
@@ -103,14 +113,18 @@ class ArrayList extends AbstractList
     /**
      * Get element positionned at elements[$i]
      *
-     * @param integer $i
+     * @param int $i
+     *
      * @return void
      */
-    public function get(int $i) {
+    public function get(int $i)
+    {
         try {
             return $this->elements[$i];
-        } catch (\Throwable $th) {
-            throw new OutOfBoundsException('Constructs ArrayList.get()');
+        } catch (\Throwable $exception) {
+            $message = 'Constructs ArrayList.get() ';
+            $message .= $exception->getMessage();
+            throw new OutOfBoundsException($message);
         }
     }
 
@@ -119,8 +133,8 @@ class ArrayList extends AbstractList
      *
      * @return array
      */
-    public function toArray() : array {
+    public function toArray(): array
+    {
         return $this->elements;
     }
-
 }

@@ -12,7 +12,7 @@ class ArrayListTest extends BaseTestCase
 
     private function createStructure()
     {
-        return ArrayList::make();;
+        return ArrayList::make();
     }
 
     public function testConstruct()

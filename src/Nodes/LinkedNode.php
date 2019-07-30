@@ -5,7 +5,8 @@ namespace Opmvpc\Constructs\Nodes;
 /**
  * Node of a List
  */
-class LinkedNode {
+final class LinkedNode
+{
 
     /**
      * Item Value
@@ -26,24 +27,41 @@ class LinkedNode {
      *
      * @param $value
      */
-    public function __construct($value) {
+    public function __construct($value, ?LinkedNode $next = null)
+    {
         $this->value = $value;
-        $this->next = null;
+        $this->next = $next;
     }
 
+    /**
+     * Returns contained value
+     *
+     * @return void
+     */
     public function getValue()
     {
         return $this->value;
     }
 
+    /**
+     * Returns next node
+     *
+     * @return void
+     */
     public function getNext()
     {
         return $this->next;
     }
 
-    public function setNext(LinkedNode $next) : void
+    /**
+     * Set next node
+     *
+     * @param LinkedNode $next
+     *
+     * @return void
+     */
+    public function setNext(LinkedNode $next): void
     {
         $this->next = $next;
     }
-
 }
