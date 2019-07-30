@@ -3,9 +3,9 @@
 namespace Opmvpc\Constructs\Lists;
 
 use OutOfBoundsException;
+use BadMethodCallException;
 use Opmvpc\Constructs\Nodes\LinkedNode;
 use Opmvpc\Constructs\Lists\AbstractList;
-use PHPUnit\Framework\MockObject\BadMethodCallException;
 
 class LinkedList extends AbstractList
 {
@@ -16,6 +16,11 @@ class LinkedList extends AbstractList
      */
     private $head;
 
+    /**
+     * List size
+     *
+     * @var int
+     */
     private $size;
 
     /**
