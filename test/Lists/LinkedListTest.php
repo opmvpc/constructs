@@ -2,9 +2,10 @@
 
 namespace Opmvpc\Constructs\Test\Lists;
 
-use OutOfBoundsException;
 use Opmvpc\Constructs\Test\BaseTestCase;
 use Opmvpc\Constructs\Lists\LinkedList;
+use OutOfBoundsException;
+use BadMethodCallException;
 
 class LinkedListTest extends BaseTestCase
 {
@@ -37,16 +38,16 @@ class LinkedListTest extends BaseTestCase
 
         $this->assertEquals($list->size(), 1);
     }
-    
+
     public function testAddItems()
     {
         $list = $this->createList();
-    
+
         $list->add(3);
         $list->add(6);
         $list->add(9);
         $list->add(3);
-    
+
         $this->assertEquals($list->size(), 4);
         $this->assertEquals($list->toArray(), self::TEST_ARRAY);
     }
@@ -71,8 +72,8 @@ class LinkedListTest extends BaseTestCase
     {
         $list = $this->createList();
         $list->add(2);
-        
-        $this->expectException(OutOfBoundsException::class);
+
+        $this->expectException(BadMethodCallException::class);
         $list->remove(2);
     }
 
@@ -84,11 +85,34 @@ class LinkedListTest extends BaseTestCase
         $this->assertEquals($list->get(0), 2);
     }
 
+    public function testGetLastItem()
+    {
+        $list = $this->createList();
+        $list->add(1);
+        $list->add(5);
+        $list->add(7);
+        $list->add(3);
+
+        $this->assertEquals($list->get(3), 3);
+    }
+
     public function testGetItemFail()
     {
         $list = $this->createList();
         $this->expectException(OutOfBoundsException::class);
         $list->get(0);
+    }
+
+    public function testGetLastItemFail()
+    {
+        $list = $this->createList();
+        $list->add(1);
+        $list->add(5);
+        $list->add(7);
+        $list->add(3);
+
+        $this->expectException(OutOfBoundsException::class);
+        $list->get(8);
     }
 
 }

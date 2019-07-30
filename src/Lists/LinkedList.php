@@ -2,8 +2,9 @@
 
 namespace Opmvpc\Constructs\Lists;
 
-use Opmvpc\Constructs\Lists\AbstractList;
+use OutOfBoundsException;
 use Opmvpc\Constructs\Nodes\LinkedNode;
+use Opmvpc\Constructs\Lists\AbstractList;
 use PHPUnit\Framework\MockObject\BadMethodCallException;
 
 class LinkedList extends AbstractList
@@ -45,7 +46,7 @@ class LinkedList extends AbstractList
     public function contains($item) : bool
     {
         $currentItem = $this->head;
-        for ($i=0; $i < $this->size; $i++) { 
+        for ($i=0; $i < $this->size; $i++) {
             if ($currentItem->getValue() == $item) {
                 return true;
             }
@@ -91,23 +92,28 @@ class LinkedList extends AbstractList
 
     /**
      * Get element positionned at elements[$i]
-     * 
-     * @requires 0 <= $index < $this->size() 
+     *
+     * @requires 0 <= $index < $this->size()
      * @param integer $index
      * @return $value
      */
     public function get(int $index)
     {
         $currentItem = $this->head;
-        for ($i=0; $i <= $index; $i++) { 
-            try {
-                $currentItem = $currentItem->getNext();
-            } catch (\Throwable $th) {
-                throw new OutOfBoundsException('Constructs ArrayList.get()');
-            }
-        }
 
-        return 0;
+        for ($i=0; $i <= $index; $i++) {
+
+            if (is_null($currentItem)) {
+                throw new OutOfBoundsException('Constructs ArrayList.get()');
+                return;
+            }
+
+            if ($i === $index) {
+                return $currentItem->getValue();
+            }
+
+            $currentItem = $currentItem->getNext();
+        }
     }
 
     /**
@@ -119,10 +125,11 @@ class LinkedList extends AbstractList
     {
         $array = [];
         $currentItem = $this->head;
+        $array[] = $currentItem->getValue();
 
         while ($currentItem->getNext() !== null) {
-            $array[] = $currentItem->getValue();
             $currentItem = $currentItem->getNext();
+            $array[] = $currentItem->getValue();
         }
 
         return $array;
