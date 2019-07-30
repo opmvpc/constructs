@@ -1,7 +1,7 @@
 {
     "name": "opmvpc/constructs",
     "description": "Data structures",
-    "keywords": ["data structures", "library"],
+    "keywords": ["data structures", "package"],
     "license": "MIT",
     "authors": [
         {
@@ -9,7 +9,7 @@
             "email": "thibsix@outlook.be"
         }
     ],
-    "type": "library",
+    "type": "package",
     "require": {
 		"php": ">=7.2"
     },
