@@ -110,4 +110,19 @@ class ArrayListTest extends BaseTestCase
         $list->get(0);
     }
 
+    public function testMixedOperations()
+    {
+        $stack = $this->createStructure()
+            ->add(4)
+            ->add(2)
+            ->remove(4)
+            ->add(6)
+            ->add(3)
+            ->remove(3)
+            ->add(5)
+            ->remove(6);
+
+        $this->assertEquals(5, $stack->get($stack->size() - 1));
+    }
+
 }

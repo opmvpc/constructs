@@ -91,6 +91,7 @@ class ArrayList extends AbstractList
         $key = \array_search($item, $this->elements);
         if ($key !== false) {
             unset($this->elements[$key]);
+            $this->elements = array_values($this->elements);
             $this->size -= 1;
         } else {
             throw new OutOfBoundsException('Constructs ArrayList.remove()');
