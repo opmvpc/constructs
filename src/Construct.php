@@ -15,11 +15,11 @@ class Construct
 
     public static function arrayList()
     {
-        return new ArrayList();
+        return ArrayList::make();
     }
 
     public static function linkedList()
     {
-        return new LinkedList();
+        return LinkedList::make();
     }
 }

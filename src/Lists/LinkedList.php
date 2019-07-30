@@ -7,6 +7,9 @@ use BadMethodCallException;
 use Opmvpc\Constructs\Nodes\LinkedNode;
 use Opmvpc\Constructs\Lists\AbstractList;
 
+/**
+ * Mutable LinkedList
+ */
 class LinkedList extends AbstractList
 {
     /**
@@ -26,9 +29,19 @@ class LinkedList extends AbstractList
     /**
      * Base constructor
      */
-    public function __construct() {
+    private function __construct() {
         $this->head = null;
         $this->size = 0;
+    }
+
+    /**
+     * Create a new Empty LinkedList
+     *
+     * @return ListContract
+     */
+    public static function make() : ListContract
+    {
+        return new LinkedList();
     }
 
     /**
@@ -65,16 +78,16 @@ class LinkedList extends AbstractList
      * size augmente de 1
      *
      * @param $item
-     * @return void
+     * @return ListContract $this
      */
-    public function add($item) : void
+    public function add($item) : ListContract
     {
         $newNode = new LinkedNode($item);
         $this->size += 1;
 
         if (is_null($this->head)) {
             $this->head = $newNode;
-            return;
+            return $this;
         }
 
         $currentItem = $this->head;
@@ -82,17 +95,21 @@ class LinkedList extends AbstractList
             $currentItem = $currentItem->getNext();
         }
         $currentItem->setNext($newNode);
+
+        return $this;
     }
 
     /**
      * @throws BadMethodCallException
      *
      * @param $item
-     * @return void
+     * @return ListContract $this
      */
-    public function remove($item) : void
+    public function remove($item) : ListContract
     {
         throw new BadMethodCallException('Unsupported Operation');
+
+        return $this;
     }
 
     /**
@@ -122,7 +139,7 @@ class LinkedList extends AbstractList
     }
 
     /**
-     * Get list elements
+     * Get structures items as an array
      *
      * @return array $array
      */

@@ -14,9 +14,8 @@ class ConstructTest extends BaseTestCase
     {
         $list = Construct::arrayList();
         $this->assertInstanceOf(ArrayList::class, $list);
-
-        $list->add("hello");
-        $list->add("world");
+        $list->add("hello")
+            ->add("world");
         $this->assertEquals($list->toArray(), ['hello', 'world']);
     }
 
@@ -25,8 +24,8 @@ class ConstructTest extends BaseTestCase
         $list = Construct::linkedList();
         $this->assertInstanceOf(LinkedList::class, $list);
 
-        $list->add("hello");
-        $list->add("world");
+        $list->add("hello")
+            ->add("world");
         $this->assertEquals($list->toArray(), ['hello', 'world']);
     }
 }

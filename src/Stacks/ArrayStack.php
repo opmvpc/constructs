@@ -41,14 +41,79 @@ class ArrayStack implements StackContract
         return $this->size;
     }
 
-
+    /**
+     * Return true if stack is empty,
+     * else return false
+     *
+     * @return boolean
+     */
+    public function isEmpty() : bool
+    {
+        return $this->size === 0 ?? false ;
+    }
 
     /**
-     * Get list elements
+     * Push an item at the top of the stack
+     *
+     * @param [type] $item
+     * @return ArrayStack
+     */
+    public function push($item) : ArrayStack
+    {
+        $this->size += 1;
+
+        array_push($this->elements, $item);
+
+        return $this;
+    }
+
+    /**
+     * Pop the item at the top of the stack
+     *
+     * @throws OutOfBoundsException
+     * @return ArrayStack
+     */
+    public function pop() : ArrayStack
+    {
+        if ($this->size === 0) {
+            throw new OutOfBoundsException('Constructs ArrayStack.pop()');
+            return $this;
+        }
+
+        $this->size -= 1;
+        array_pop($this->elements);
+
+        return $this;
+
+    }
+
+    /**
+     * Return the item at the top of the stack
+     *
+     * @throws OutOfBoundsException
+     * @return [Type] $item
+     */
+    public function top()
+    {
+        if ($this->isEmpty()) {
+            throw new OutOfBoundsException('Constructs ArrayStack.top()');
+        }
+
+        return $this->elements[$this->size-1];
+    }
+
+    /**
+     * Get structures items as an array
      *
      * @return array
      */
     public function toArray() : array {
-        return $this->elements;
+        $array = [];
+
+        for ($i=0; $i < $this->size; $i++) {
+            $array[] = $this->elements[$i];
+        }
+
+        return $array;
     }
 }

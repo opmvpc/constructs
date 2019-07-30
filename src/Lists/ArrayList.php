@@ -2,11 +2,11 @@
 
 namespace Opmvpc\Constructs\Lists;
 
-use Opmvpc\Constructs\Lists\AbstractList;
 use OutOfBoundsException;
+use Opmvpc\Constructs\Lists\AbstractList;
 
 /**
- * Array based List implementation
+ * Mutable Array based List implementation
  */
 class ArrayList extends AbstractList
 {
@@ -27,9 +27,19 @@ class ArrayList extends AbstractList
     /**
      * Base constructor
      */
-    public function __construct() {
-        $this->size = 0;
-        $this->elements = [];
+    private function __construct() {
+            $this->size = 0;
+            $this->elements = [];
+    }
+
+    /**
+     * Create a new Empty LinkedList
+     *
+     * @return ListContract
+     */
+    public static function make() : ListContract
+    {
+        return new ArrayList();
     }
 
     /**
@@ -52,7 +62,7 @@ class ArrayList extends AbstractList
         if (\array_search($item, $this->elements) !== false) {
             return true;
         }
-        return false;     
+        return false;
     }
 
     /**
@@ -62,9 +72,11 @@ class ArrayList extends AbstractList
      * @param $item
      * @return void
      */
-    public function add($item) : void {
+    public function add($item) : ListContract {
         $this->elements[] = $item;
         $this->size += 1;
+
+        return $this;
     }
 
     /**
@@ -75,7 +87,7 @@ class ArrayList extends AbstractList
      * @param $item
      * @return void
      */
-    public function remove($item) : void {
+    public function remove($item) : ListContract {
         $key = \array_search($item, $this->elements);
         if ($key !== false) {
             unset($this->elements[$key]);
@@ -83,6 +95,8 @@ class ArrayList extends AbstractList
         } else {
             throw new OutOfBoundsException('Constructs ArrayList.remove()');
         }
+
+        return $this;
     }
 
     /**
@@ -100,11 +114,12 @@ class ArrayList extends AbstractList
     }
 
     /**
-     * Get list elements
+     * Get structures items as an array
      *
      * @return array
      */
     public function toArray() : array {
         return $this->elements;
     }
+
 }

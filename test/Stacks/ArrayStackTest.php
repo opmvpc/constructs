@@ -27,55 +27,62 @@ class ArrayStackTest extends BaseTestCase
     {
         $stack = $this->createStructure();
 
-        $this->assertEquals(count($stack->toArray()), 0);
-        $this->assertEquals($stack->size(), 0);
+        $this->assertEquals(0, count($stack->toArray()));
+        $this->assertEquals(0, $stack->size());
     }
 
     public function testIsEmpty()
     {
         $stack = $this->createStructure();
 
-        $this->assertEquals($stack->isEmpty(), true);
+        $this->assertEquals(true, $stack->isEmpty());
     }
 
     public function testIsNotEmpty()
     {
-        $stack = $this->createStructure();
+        $stack = $this->createStructure()
+            ->push(3);
 
-        $stack->push(3);
-
-        $this->assertEquals($stack->isEmpty(), false);
+        $this->assertEquals(false, $stack->isEmpty());
     }
 
     public function testSizeFilledStack()
     {
-        $stack = $this->createStructure();
-
-        $stack->push(3);
+        $stack = $this->createStructure()
+            ->push(3);
 
         $this->assertEquals(count($stack->toArray()), $stack->size());
-        $this->assertEquals($stack->size(), 1);
+        $this->assertEquals(1, $stack->size());
     }
 
     public function testPushItems()
     {
-        $stack = $this->createStructure();
+        $stack = $this->createStructure()
+            ->push(3)
+            ->push(6)
+            ->push(9)
+            ->push(3);
 
-        $stack->push(3);
-        $stack->push(6);
-        $stack->push(9);
-        $stack->push(3);
-
-        $this->assertEquals(count($stack->toArray()), 4);
-        $this->assertEquals($stack->toArray(), self::TEST_ARRAY);
+        $this->assertEquals(4, count($stack->toArray()));
+        $this->assertEquals(self::TEST_ARRAY, $stack->toArray());
     }
 
     public function testStackTop()
     {
-        $stack = $this->createStructure();
-        $stack->push(3);
+        $stack = $this->createStructure()
+            ->push(3);
 
-        $this->assertEquals($stack->top(), 3);
+        $this->assertEquals(3, $stack->top());
+    }
+
+    public function testStackTopFilled()
+    {
+        $stack = $this->createStructure()
+            ->push(3)
+            ->push(5)
+            ->push(2);
+
+        $this->assertEquals(2, $stack->top());
     }
 
     public function testStackTopFail()
@@ -88,20 +95,43 @@ class ArrayStackTest extends BaseTestCase
 
     public function testPop()
     {
-        $stack = $this->createStructure();
-        $stack->add(2);
-        $stack->remove(2);
+        $stack = $this->createStructure()
+            ->push(2)
+            ->pop();
 
-        $this->assertEquals(count($stack->toArray()), 0);
+        $this->assertTrue($stack->isEmpty());
+    }
+
+    public function testPopFilled()
+    {
+        $stack = $this->createStructure()
+            ->push(2)
+            ->push(3)
+            ->pop();
+
+        $this->assertEquals(2, $stack->top());
     }
 
     public function testPopFail()
     {
         $stack = $this->createStructure();
-        $stack->add(2);
-        $stack->remove(2);
+        $this->expectException(OutOfBoundsException::class);
+        $stack->pop();
+    }
 
-        $this->assertEquals(count($stack->toArray()), 0);
+    public function testMixedOperations()
+    {
+        $stack = $this->createStructure()
+            ->push(4)
+            ->push(2)
+            ->pop()
+            ->push(6)
+            ->push(3)
+            ->pop()
+            ->push(5)
+            ->pop();
+
+        $this->assertEquals(6, $stack->top());
     }
 
 }

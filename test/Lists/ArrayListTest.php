@@ -12,7 +12,7 @@ class ArrayListTest extends BaseTestCase
 
     private function createStructure()
     {
-        return new ArrayList();
+        return ArrayList::make();;
     }
 
     public function testConstruct()
@@ -33,9 +33,8 @@ class ArrayListTest extends BaseTestCase
 
     public function testSizeFilledList()
     {
-        $list = $this->createStructure();
-
-        $list->add(3);
+        $list = $this->createStructure()
+            ->add(3);
 
         $this->assertEquals(count($list->toArray()), $list->size());
         $this->assertEquals($list->size(), 1);
@@ -43,38 +42,48 @@ class ArrayListTest extends BaseTestCase
 
     public function testAddItems()
     {
-        $list = $this->createStructure();
-
-        $list->add(3);
-        $list->add(6);
-        $list->add(9);
-        $list->add(3);
+        $list = $this->createStructure()
+            ->add(3)
+            ->add(6)
+            ->add(9)
+            ->add(3);
 
         $this->assertEquals(count($list->toArray()), 4);
         $this->assertEquals($list->toArray(), self::TEST_ARRAY);
     }
 
-    public function testListContainsItem()
+    public function testArrayList()
     {
         $list = $this->createStructure();
-        $list->add(3);
+
+        $list
+            ->add("hello")
+            ->add("world");
+
+        $this->assertEquals($list->toArray(), ['hello', 'world']);
+    }
+
+    public function testListContainsItem()
+    {
+        $list = $this->createStructure()
+            ->add(3);
 
         $this->assertTrue($list->contains(3));
     }
 
     public function testListDoesntContainsItem()
     {
-        $list = $this->createStructure();
-        $list->add(2);
+        $list = $this->createStructure()
+            ->add(2);
 
         $this->assertFalse($list->contains(3));
     }
 
     public function testListRemove()
     {
-        $list = $this->createStructure();
-        $list->add(2);
-        $list->remove(2);
+        $list = $this->createStructure()
+            ->add(2)
+            ->remove(2);
 
         $this->assertEquals(count($list->toArray()), 0);
     }
@@ -88,8 +97,8 @@ class ArrayListTest extends BaseTestCase
 
     public function testGetItem()
     {
-        $list = $this->createStructure();
-        $list->add(2);
+        $list = $this->createStructure()
+            ->add(2);
 
         $this->assertEquals($list->get(0), 2);
     }

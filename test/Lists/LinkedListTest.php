@@ -13,7 +13,7 @@ class LinkedListTest extends BaseTestCase
 
     private function createStructure()
     {
-        return new LinkedList();
+        return LinkedList::make();;
     }
 
     public function testConstruct()
@@ -32,21 +32,19 @@ class LinkedListTest extends BaseTestCase
 
     public function testSizeFilledList()
     {
-        $list = $this->createStructure();
-
-        $list->add(3);
+        $list = $this->createStructure()
+            ->add(3);
 
         $this->assertEquals($list->size(), 1);
     }
 
     public function testAddItems()
     {
-        $list = $this->createStructure();
-
-        $list->add(3);
-        $list->add(6);
-        $list->add(9);
-        $list->add(3);
+        $list = $this->createStructure()
+            ->add(3)
+            ->add(6)
+            ->add(9)
+            ->add(3);
 
         $this->assertEquals($list->size(), 4);
         $this->assertEquals($list->toArray(), self::TEST_ARRAY);
@@ -54,24 +52,24 @@ class LinkedListTest extends BaseTestCase
 
     public function testListContainsItem()
     {
-        $list = $this->createStructure();
-        $list->add(3);
+        $list = $this->createStructure()
+            ->add(3);
 
         $this->assertTrue($list->contains(3));
     }
 
     public function testListDoesntContainsItem()
     {
-        $list = $this->createStructure();
-        $list->add(2);
+        $list = $this->createStructure()
+            ->add(2);
 
         $this->assertFalse($list->contains(3));
     }
 
     public function testListRemove()
     {
-        $list = $this->createStructure();
-        $list->add(2);
+        $list = $this->createStructure()
+            ->add(2);
 
         $this->expectException(BadMethodCallException::class);
         $list->remove(2);
@@ -79,19 +77,19 @@ class LinkedListTest extends BaseTestCase
 
     public function testGetItem()
     {
-        $list = $this->createStructure();
-        $list->add(2);
+        $list = $this->createStructure()
+            ->add(2);
 
         $this->assertEquals($list->get(0), 2);
     }
 
     public function testGetLastItem()
     {
-        $list = $this->createStructure();
-        $list->add(1);
-        $list->add(5);
-        $list->add(7);
-        $list->add(3);
+        $list = $this->createStructure()
+            ->add(1)
+            ->add(5)
+            ->add(7)
+            ->add(3);
 
         $this->assertEquals($list->get(3), 3);
     }
@@ -105,11 +103,11 @@ class LinkedListTest extends BaseTestCase
 
     public function testGetLastItemFail()
     {
-        $list = $this->createStructure();
-        $list->add(1);
-        $list->add(5);
-        $list->add(7);
-        $list->add(3);
+        $list = $this->createStructure()
+            ->add(1)
+            ->add(5)
+            ->add(7)
+            ->add(3);
 
         $this->expectException(OutOfBoundsException::class);
         $list->get(8);
