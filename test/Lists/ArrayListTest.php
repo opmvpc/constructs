@@ -112,7 +112,7 @@ class ArrayListTest extends BaseTestCase
 
     public function testMixedOperations()
     {
-        $stack = $this->createStructure()
+        $list = $this->createStructure()
             ->add(4)
             ->add(2)
             ->remove(4)
@@ -122,12 +122,12 @@ class ArrayListTest extends BaseTestCase
             ->add(5)
             ->remove(6);
 
-        $this->assertEquals(5, $stack->get($stack->size() - 1));
+        $this->assertEquals(5, $list->get($list->size() - 1));
     }
 
     public function testToArray()
     {
-        $queue = $this->createStructure()
+        $list = $this->createStructure()
             ->add(3)
             ->add(3)
             ->add(3)
@@ -137,13 +137,13 @@ class ArrayListTest extends BaseTestCase
             ->add(9)
             ->add(3);
 
-        $queue->remove(7);
-        $queue->remove(3);
-        $queue->remove(3);
-        $queue->remove(3);
+        $list->remove(7);
+        $list->remove(3);
+        $list->remove(3);
+        $list->remove(3);
 
-        $this->assertEquals(4, count($queue->toArray()));
-        $this->assertEquals(self::TEST_ARRAY, $queue->toArray());
+        $this->assertEquals(4, count($list->toArray()));
+        $this->assertEquals(self::TEST_ARRAY, $list->toArray());
     }
 
 }
