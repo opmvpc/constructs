@@ -2,9 +2,12 @@
 
 namespace Opmvpc\Constructs\Queues;
 
-use OutOfBoundsException;
 use Opmvpc\Constructs\Contracts\QueueContract;
+use OutOfBoundsException;
 
+/**
+ * Mutable Array based Queue implementation
+ */
 final class ArrayQueue implements QueueContract
 {
     /**
@@ -35,6 +38,9 @@ final class ArrayQueue implements QueueContract
      */
     private $elements;
 
+    /**
+     * Base constructor
+     */
     private function __construct() {
         $this->size = 0;
         $this->head = 0;
@@ -62,11 +68,26 @@ final class ArrayQueue implements QueueContract
         return $this->size;
     }
 
+    /**
+     * Return true if stack is empty,
+     * else return false
+     *
+     * @return bool
+     */
     public function isEmpty(): bool
     {
         return $this->size === 0 ?? false;
     }
 
+    /**
+     * Add an item at last position
+     * $this->size + 1
+     * $this->last + 1
+     *
+     * @param [type] $item
+     *
+     * @return QueueContract
+     */
     public function enqueue($item): QueueContract
     {
         $this->size += 1;
@@ -77,6 +98,15 @@ final class ArrayQueue implements QueueContract
         return $this;
     }
 
+    /**
+     * Returns item at head position
+     * $this->size - 1
+     * $this->head - 1
+     *
+     * @throws OutOfBoundsException
+     *
+     * @return [type] $item
+     */
     public function dequeue()
     {
         try {
@@ -94,6 +124,13 @@ final class ArrayQueue implements QueueContract
         return $item;
     }
 
+    /**
+     * Returns item at last position
+     *
+     * @throws OutOfBoundsException
+     *
+     * @return [type] $item
+     */
     public function peek()
     {
         try {
@@ -105,6 +142,11 @@ final class ArrayQueue implements QueueContract
         }
     }
 
+    /**
+     * Get structures items as an array
+     *
+     * @return array $array
+     */
     public function toArray(): array
     {
         $array = [];

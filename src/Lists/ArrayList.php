@@ -2,13 +2,14 @@
 
 namespace Opmvpc\Constructs\Lists;
 
-use Opmvpc\Constructs\Contracts\ListContract;
 use OutOfBoundsException;
+use Opmvpc\Constructs\Contracts\ListContract;
+use Opmvpc\Constructs\Structure;
 
 /**
  * Mutable Array based List implementation
  */
-final class ArrayList implements ListContract
+final class ArrayList extends Structure implements ListContract
 {
     /**
      * List size
