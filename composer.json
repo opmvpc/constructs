@@ -11,7 +11,8 @@
     ],
     "type": "package",
     "require": {
-		"php": ">=7.2"
+        "php": ">=7.2",
+        "symfony/var-dumper": "^4.3"
     },
     "require-dev": {
 		"phpunit/phpunit": "^8",
@@ -21,6 +22,9 @@
         "psr-4": {
             "Opmvpc\\Constructs\\": "src/",
             "Opmvpc\\Constructs\\Test\\": "test/"
-        }
+        },
+        "files": [
+            "vendor/symfony/var-dumper/Resources/functions/dump.php"
+        ]
     }
 }

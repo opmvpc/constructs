@@ -7,6 +7,7 @@ namespace Opmvpc\Constructs\Contracts;
  */
 interface StackContract
 {
+    public static function make(): StackContract;
     public function isEmpty(): bool;
     public function push($item): StackContract;
     public function pop(): StackContract;
