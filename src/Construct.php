@@ -4,6 +4,7 @@ namespace Opmvpc\Constructs;
 
 use Opmvpc\Constructs\Lists\ArrayList;
 use Opmvpc\Constructs\Lists\LinkedList;
+use Opmvpc\Constructs\Queues\ArrayQueue;
 use Opmvpc\Constructs\Stacks\ArrayStack;
 use Opmvpc\Constructs\Stacks\LinkedStack;
 
@@ -53,5 +54,15 @@ final class Construct
     public static function linkedStack()
     {
         return LinkedStack::make();
+    }
+
+    /**
+     * Returns a new ArrayStack
+     *
+     * @return ArrayQueue
+     */
+    public static function arrayQueue()
+    {
+        return ArrayQueue::make();
     }
 }

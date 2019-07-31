@@ -125,6 +125,6 @@ final class LinkedStack implements StackContract
             $array[] = $currentItem->getValue();
         }
 
-        return $array;
+        return array_reverse($array);
     }
 }

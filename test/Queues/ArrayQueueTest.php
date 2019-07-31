@@ -131,19 +131,34 @@ class ArrayQueueTest extends BaseTestCase
             ->enqueue(4)
             ->enqueue(2)
             ->dequeue();
-        dump($queue);
         $queue
             ->enqueue(6)
             ->enqueue(3)
             ->dequeue();
-        dump($queue);
         $queue
             ->enqueue(5)
             ->dequeue();
-        dump($queue);
-        dump($queue->peek());
 
-        $this->assertEquals(3, $queue->peek());
+        $this->assertEquals(5, $queue->peek());
+        $this->assertEquals(3, $queue->dequeue());
     }
 
+    public function testToArray()
+    {
+        $queue = $this->createStructure()
+            ->enqueue(3)
+            ->enqueue(3)
+            ->enqueue(3)
+            ->enqueue(3)
+            ->enqueue(6)
+            ->enqueue(9)
+            ->enqueue(3);
+
+        $queue->dequeue();
+        $queue->dequeue();
+        $queue->dequeue();
+
+        $this->assertEquals(4, count($queue->toArray()));
+        $this->assertEquals(self::TEST_ARRAY, $queue->toArray());
+    }
 }

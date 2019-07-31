@@ -125,4 +125,25 @@ class ArrayListTest extends BaseTestCase
         $this->assertEquals(5, $stack->get($stack->size() - 1));
     }
 
+    public function testToArray()
+    {
+        $queue = $this->createStructure()
+            ->add(3)
+            ->add(3)
+            ->add(3)
+            ->add(3)
+            ->add(6)
+            ->add(7)
+            ->add(9)
+            ->add(3);
+
+        $queue->remove(7);
+        $queue->remove(3);
+        $queue->remove(3);
+        $queue->remove(3);
+
+        $this->assertEquals(4, count($queue->toArray()));
+        $this->assertEquals(self::TEST_ARRAY, $queue->toArray());
+    }
+
 }

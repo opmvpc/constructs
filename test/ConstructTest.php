@@ -5,6 +5,7 @@ namespace Opmvpc\Constructs\Test;
 use Opmvpc\Constructs\Construct;
 use Opmvpc\Constructs\Lists\ArrayList;
 use Opmvpc\Constructs\Lists\LinkedList;
+use Opmvpc\Constructs\Queues\ArrayQueue;
 use Opmvpc\Constructs\Stacks\ArrayStack;
 use Opmvpc\Constructs\Test\BaseTestCase;
 use Opmvpc\Constructs\Stacks\LinkedStack;
@@ -20,6 +21,7 @@ class ConstructTest extends BaseTestCase
         $list
             ->add("hello")
             ->add("world");
+
         $this->assertEquals($list->toArray(), ['hello', 'world']);
     }
 
@@ -31,6 +33,7 @@ class ConstructTest extends BaseTestCase
         $list
             ->add("hello")
             ->add("world");
+
         $this->assertEquals($list->toArray(), ['hello', 'world']);
     }
 
@@ -42,6 +45,7 @@ class ConstructTest extends BaseTestCase
         $list
             ->push("hello")
             ->push("world");
+
         $this->assertEquals($list->toArray(), ['hello', 'world']);
     }
 
@@ -51,8 +55,21 @@ class ConstructTest extends BaseTestCase
         $this->assertInstanceOf(LinkedStack::class, $list);
 
         $list
-            ->push("world")
-            ->push("hello");
+            ->push("hello")
+            ->push("world");
+
+        $this->assertEquals($list->toArray(), ['hello', 'world']);
+    }
+
+    public function testArrayQueue()
+    {
+        $list = Construct::arrayQueue();
+        $this->assertInstanceOf(ArrayQueue::class, $list);
+
+        $list
+            ->enqueue("hello")
+            ->enqueue("world");
+
         $this->assertEquals($list->toArray(), ['hello', 'world']);
     }
 }

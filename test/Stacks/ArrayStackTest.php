@@ -134,4 +134,27 @@ class ArrayStackTest extends BaseTestCase
         $this->assertEquals(6, $stack->top());
     }
 
+    public function testToArray()
+    {
+        $queue = $this->createStructure()
+            ->push(3)
+            ->push(1)
+            ->pop()
+            ->push(6)
+            ->push(0)
+            ->push(0)
+            ->pop()
+            ->pop()
+            ->push(9)
+            ->push(2)
+            ->pop()
+            ->push(3)
+            ->push(3)
+            ->push(4)
+            ->pop()
+            ->pop();
+
+        $this->assertEquals(4, count($queue->toArray()));
+        $this->assertEquals(self::TEST_ARRAY, $queue->toArray());
+    }
 }

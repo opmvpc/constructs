@@ -113,4 +113,15 @@ class LinkedListTest extends BaseTestCase
         $list->get(8);
     }
 
+    public function testToArray()
+    {
+        $queue = $this->createStructure()
+            ->add(3)
+            ->add(6)
+            ->add(9)
+            ->add(3);
+
+        $this->assertEquals(4, count($queue->toArray()));
+        $this->assertEquals(self::TEST_ARRAY, $queue->toArray());
+    }
 }

@@ -37,7 +37,7 @@ final class ArrayQueue implements QueueContract
 
     private function __construct() {
         $this->size = 0;
-        $this->head = -1;
+        $this->head = 0;
         $this->last = -1;
         $this->elements = [];
     }
@@ -79,20 +79,17 @@ final class ArrayQueue implements QueueContract
 
     public function dequeue()
     {
-
-        $this->size -= 1;
-        $this->head += 1;
-
         try {
             $item = $this->elements[$this->head];
-            unset($this->elements[$this->head]);
-            $this->elements = array_values($this->elements);
         } catch (\Throwable $exception) {
             $message = 'Constructs ArrayQueue.dequeue() ';
             $message .= $exception->getMessage();
             throw new OutOfBoundsException($message);
             return;
         }
+
+        $this->size -= 1;
+        $this->head += 1;
 
         return $item;
     }
@@ -110,7 +107,13 @@ final class ArrayQueue implements QueueContract
 
     public function toArray(): array
     {
-        return $this->elements;
+        $array = [];
+
+        for ($i=$this->head; $i <= $this->last; $i++) {
+            $array[] = $this->elements[$i];
+        }
+
+        return $array;
     }
 
 }
