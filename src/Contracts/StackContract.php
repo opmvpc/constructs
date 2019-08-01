@@ -3,7 +3,7 @@
 namespace Opmvpc\Constructs\Contracts;
 
 /**
- * List interface
+ * StackContract interface
  */
 interface StackContract
 {

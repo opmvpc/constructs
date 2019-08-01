@@ -9,6 +9,7 @@ use Opmvpc\Constructs\Queues\ArrayQueue;
 use Opmvpc\Constructs\Stacks\ArrayStack;
 use Opmvpc\Constructs\Test\BaseTestCase;
 use Opmvpc\Constructs\Stacks\LinkedStack;
+use Opmvpc\Constructs\Threes\Heaps\ArrayHeap;
 
 class ConstructTest extends BaseTestCase
 {
@@ -71,5 +72,17 @@ class ConstructTest extends BaseTestCase
             ->enqueue("world");
 
         $this->assertEquals($list->toArray(), ['hello', 'world']);
+    }
+
+    public function testArrayHeap()
+    {
+        $list = Construct::arrayHeap();
+        $this->assertInstanceOf(ArrayHeap::class, $list);
+
+        $list
+            ->add("hello")
+            ->add("world");
+
+        $this->assertEquals($list->toArray(), ['world', 'hello']);
     }
 }

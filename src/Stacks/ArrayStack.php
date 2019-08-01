@@ -2,13 +2,14 @@
 
 namespace Opmvpc\Constructs\Stacks;
 
-use Opmvpc\Constructs\Contracts\StackContract;
 use OutOfBoundsException;
+use Opmvpc\Constructs\Structure;
+use Opmvpc\Constructs\Contracts\StackContract;
 
 /**
  * Array based List implementation
  */
-final class ArrayStack implements StackContract
+final class ArrayStack extends Structure implements StackContract
 {
     /**
      * List size

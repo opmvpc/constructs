@@ -2,14 +2,15 @@
 
 namespace Opmvpc\Constructs\Stacks;
 
-use Opmvpc\Constructs\Contracts\StackContract;
-use Opmvpc\Constructs\Nodes\LinkedNode;
 use OutOfBoundsException;
+use Opmvpc\Constructs\Structure;
+use Opmvpc\Constructs\Nodes\LinkedNode;
+use Opmvpc\Constructs\Contracts\StackContract;
 
 /**
  * Array based List implementation
  */
-final class LinkedStack implements StackContract
+final class LinkedStack extends Structure implements StackContract
 {
     /**
      * Head of the Stack

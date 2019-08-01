@@ -1,0 +1,239 @@
+<?php
+
+namespace Opmvpc\Constructs\Threes\Heaps;
+
+use OutOfBoundsException;
+use Opmvpc\Constructs\Threes\Heap;
+use Opmvpc\Constructs\Nodes\SimpleNode;
+use Opmvpc\Constructs\Contracts\ThreeContract;
+
+/**
+ * Mutable ArrayHeap
+ * clé triées en fonction de la valeur
+ * farall i, j | 0 < i < j < n , elements[i] > elements[j]
+ */
+final class ArrayHeap extends Heap
+{
+    /**
+     * List size
+     *
+     * @var int
+     */
+    protected $size;
+
+    /**
+     * Elements List
+     *
+     * @var array
+     */
+    protected $elements;
+
+    /**
+     * Base constructor
+     */
+    private function __construct()
+    {
+        $this->size = 0;
+        $this->elements = [];
+        $this->elements[0] = null;
+    }
+
+    /**
+     * Create a new Empty ThreeContract
+     *
+     * @return ThreeContract
+     */
+    public static function make(): ThreeContract
+    {
+        return new ArrayHeap();
+    }
+
+    /**
+     * Size of the list
+     *
+     * @return int
+     */
+    public function size(): int
+    {
+        return $this->size;
+    }
+
+    /**
+     * Ajoute un element dans le heap
+     * size augmente de 1
+     *
+     * @param $item
+     *
+     * @return void
+     */
+    public function add($item): ThreeContract
+    {
+        $this->elements[] = SimpleNode::make($item);
+        $this->size += 1;
+
+        $this->heapify();
+
+        return $this;
+    }
+
+    /**
+     * Retire un item s'il est présent dans le heap,
+     * sinon renvoie OutOfBoundException
+     * size diminue de 1
+     *
+     * @param $item
+     *
+     * @throws OutOfBoundsException
+     *
+     * @return ThreeContract
+     */
+    public function remove($item): ThreeContract
+    {
+        $key = $this->findFirstIndex(SimpleNode::make($item));
+        if ($key !== null) {
+            unset($this->elements[$key]);
+            $this->elements = array_values($this->elements);
+            $this->size -= 1;
+            $this->heapify();
+        } else {
+            throw new OutOfBoundsException('Constructs ArrayList.remove()');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get element positionned at elements[$i]
+     *
+     * @param int $i
+     *
+     * @return SimpleNode
+     */
+    public function get(int $i): SimpleNode
+    {
+        try {
+            return $this->elements[$i];
+        } catch (\Throwable $exception) {
+            $message = 'Constructs ArrayList.get() ';
+            $message .= $exception->getMessage();
+            throw new OutOfBoundsException($message);
+        }
+    }
+
+    /**
+     * Get structures items as an array
+     *
+     * @return array
+     */
+    public function toArray(): array
+    {
+        $array = [];
+
+        for ($i=1; $i <= $this->size; $i++) {
+            $array[] = $this->elements[$i]['value'];
+        }
+
+        return $array;
+    }
+
+    /**
+     * Permute elements[1] et elements[size-1]
+     * Puis, pour chaque élement
+     *
+     * @return void
+     */
+    private function heapify(): void
+    {
+        if ($this->size === 0) {
+            return;
+        }
+
+        for ($i = $this->size; $i > 0; $i--) {
+            $this->swap(1, $i);
+            $this->siftDown($i);
+        }
+    }
+
+    /**
+     * siftDown
+     *
+     * si le fils gauche elements[2i] > elements[i] => swap(2i, i)
+     * si le fils droit elements[2i+1] > elements[i] => swap(2i+1, i)
+     * sinon on stop
+     *
+     * @param int $i
+     *
+     * @return void
+     */
+    public function siftDown(int $i): void
+    {
+        $child = 2 * $i;
+
+        if ($child > $this->size) {
+            return;
+        }
+        if ($this->elements[$child]['value'] > $this->elements[$i]['value']) {
+            $this->swap($child, $i);
+            $this->siftDown($child);
+        }
+
+        if ($child + 1 > $this->size) {
+            return;
+        }
+        if ($this->elements[$child + 1]['value'] > $this->elements[$i]['value']) {
+            $this->swap($child + 1, $i);
+            $this->siftDown($child + 1);
+        }
+
+        return;
+    }
+
+    /**
+     * Swap two items in containded in $this->elements
+     *
+     * @param int $first
+     * @param int $second
+     *
+     * @return void
+     */
+    public function swap(int $first, int $second): void
+    {
+        $tmp = $this->elements[$first];
+        $this->elements[$first] = $this->elements[$second];
+        $this->elements[$second] = $tmp;
+    }
+
+    /**
+     * returns the key of the first item matching parameter value
+     *
+     * @param SimpleNode $item
+     *
+     * @return int|null
+     */
+    private function findFirstIndex(SimpleNode $item): ?int
+    {
+        foreach ($this->elements as $key => $element) {
+            if ($item['value'] === $element['value']) {
+                return $key;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Checks representation invariant
+     *
+     * @return bool
+     */
+    public function repOk(): bool
+    {
+        if ($this->size === count($this->elements) + 1) {
+            return false;
+        } if (! $this->isHeapified()) {
+            return false;
+        }
+
+        return true;
+    }
+}

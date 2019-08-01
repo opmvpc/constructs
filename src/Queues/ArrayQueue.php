@@ -2,13 +2,14 @@
 
 namespace Opmvpc\Constructs\Queues;
 
-use Opmvpc\Constructs\Contracts\QueueContract;
 use OutOfBoundsException;
+use Opmvpc\Constructs\Structure;
+use Opmvpc\Constructs\Contracts\QueueContract;
 
 /**
  * Mutable Array based Queue implementation
  */
-final class ArrayQueue implements QueueContract
+final class ArrayQueue extends Structure implements QueueContract
 {
     /**
      * List size

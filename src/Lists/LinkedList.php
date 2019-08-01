@@ -2,15 +2,16 @@
 
 namespace Opmvpc\Constructs\Lists;
 
-use BadMethodCallException;
-use Opmvpc\Constructs\Contracts\ListContract;
-use Opmvpc\Constructs\Nodes\LinkedNode;
 use OutOfBoundsException;
+use BadMethodCallException;
+use Opmvpc\Constructs\Structure;
+use Opmvpc\Constructs\Nodes\LinkedNode;
+use Opmvpc\Constructs\Contracts\ListContract;
 
 /**
  * Mutable LinkedList
  */
-final class LinkedList implements ListContract
+final class LinkedList extends Structure implements ListContract
 {
     /**
      * Head of LinkedList

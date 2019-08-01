@@ -7,6 +7,7 @@ use Opmvpc\Constructs\Lists\LinkedList;
 use Opmvpc\Constructs\Queues\ArrayQueue;
 use Opmvpc\Constructs\Stacks\ArrayStack;
 use Opmvpc\Constructs\Stacks\LinkedStack;
+use Opmvpc\Constructs\Threes\Heaps\ArrayHeap;
 
 /**
 *  Construct simple data structures
@@ -64,5 +65,15 @@ final class Construct
     public static function arrayQueue()
     {
         return ArrayQueue::make();
+    }
+
+    /**
+     * Returns a new ArrayHeap
+     *
+     * @return ArrayHeap
+     */
+    public static function arrayHeap()
+    {
+        return ArrayHeap::make();
     }
 }
