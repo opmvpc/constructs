@@ -39,7 +39,7 @@ abstract class Heap extends Structure implements ThreeContract
      *
      * @return bool
      */
-    protected function repOk(): bool
+    public function repOk(): bool
     {
         if (! $this->isHeapified()) {
             return false;
