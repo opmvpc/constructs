@@ -29,9 +29,7 @@ Then import Constructs main class or individual classes in your code.
 
 ## Lists
 
-### ArrayList
-
-#### Available methods
+### Available methods
 
 ```php
 public static function make(): ListContract;
@@ -42,6 +40,8 @@ public function remove($item): ListContract;
 public function get(int $i);
 public function toArray(): array;
 ```
+
+### ArrayList
 
 #### Usage
 
@@ -74,7 +74,7 @@ $list = Construct::linkedList()
 
 ## Stacks
 
-#### Available methods
+### Available methods
 
 ```php
 public static function make(): StackContract;
@@ -117,7 +117,7 @@ $list = Construct::linkedStack()
 
 ## Queues
 
-#### Available methods
+### Available methods
 
 ```php
 public static function make(): QueueContract;
@@ -150,7 +150,7 @@ $list = Construct::linkedQueue()
 
 ## Threes
 
-#### Available methods
+### Available methods
 
 ```php
 public static function make(): ThreeContract;
