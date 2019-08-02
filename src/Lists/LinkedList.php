@@ -2,11 +2,11 @@
 
 namespace Opmvpc\Constructs\Lists;
 
-use OutOfBoundsException;
 use BadMethodCallException;
-use Opmvpc\Constructs\Structure;
-use Opmvpc\Constructs\Nodes\LinkedNode;
 use Opmvpc\Constructs\Contracts\ListContract;
+use Opmvpc\Constructs\Nodes\LinkedNode;
+use Opmvpc\Constructs\Structure;
+use OutOfBoundsException;
 
 /**
  * Mutable LinkedList

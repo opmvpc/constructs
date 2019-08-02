@@ -2,10 +2,10 @@
 
 namespace Opmvpc\Constructs\Stacks;
 
-use OutOfBoundsException;
-use Opmvpc\Constructs\Structure;
-use Opmvpc\Constructs\Nodes\LinkedNode;
 use Opmvpc\Constructs\Contracts\StackContract;
+use Opmvpc\Constructs\Nodes\LinkedNode;
+use Opmvpc\Constructs\Structure;
+use OutOfBoundsException;
 
 /**
  * Array based List implementation

@@ -4,7 +4,7 @@ namespace Opmvpc\Constructs;
 
 abstract class Structure
 {
-    public function dd(): void
+    public function dumpAndDie(): void
     {
         dd($this);
     }

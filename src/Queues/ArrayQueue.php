@@ -2,9 +2,9 @@
 
 namespace Opmvpc\Constructs\Queues;
 
-use OutOfBoundsException;
-use Opmvpc\Constructs\Structure;
 use Opmvpc\Constructs\Contracts\QueueContract;
+use Opmvpc\Constructs\Structure;
+use OutOfBoundsException;
 
 /**
  * Mutable Array based Queue implementation

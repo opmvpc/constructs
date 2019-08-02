@@ -2,10 +2,10 @@
 
 namespace Opmvpc\Constructs\Threes\Heaps;
 
-use OutOfBoundsException;
-use Opmvpc\Constructs\Threes\Heap;
-use Opmvpc\Constructs\Nodes\SimpleNode;
 use Opmvpc\Constructs\Contracts\ThreeContract;
+use Opmvpc\Constructs\Nodes\SimpleNode;
+use Opmvpc\Constructs\Threes\Heap;
+use OutOfBoundsException;
 
 /**
  * Mutable ArrayHeap
@@ -24,7 +24,7 @@ final class ArrayHeap extends Heap
     /**
      * Elements List
      *
-     * @var array
+     * @var array<SimpleNode>
      */
     protected $elements;
 
@@ -62,9 +62,9 @@ final class ArrayHeap extends Heap
      * Ajoute un element dans le heap
      * size augmente de 1
      *
-     * @param $item
+     * @param object $item
      *
-     * @return void
+     * @return ThreeContract
      */
     public function add($item): ThreeContract
     {
@@ -81,7 +81,7 @@ final class ArrayHeap extends Heap
      * sinon renvoie OutOfBoundException
      * size diminue de 1
      *
-     * @param $item
+     * @param ThreeContract $item
      *
      * @throws OutOfBoundsException
      *
@@ -123,7 +123,7 @@ final class ArrayHeap extends Heap
     /**
      * Get structures items as an array
      *
-     * @return array
+     * @return array<SimpleNode>
      */
     public function toArray(): array
     {
@@ -134,24 +134,6 @@ final class ArrayHeap extends Heap
         }
 
         return $array;
-    }
-
-    /**
-     * Permute elements[1] et elements[size-1]
-     * Puis, pour chaque élement
-     *
-     * @return void
-     */
-    private function heapify(): void
-    {
-        if ($this->size === 0) {
-            return;
-        }
-
-        for ($i = $this->size; $i > 0; $i--) {
-            $this->swap(1, $i);
-            $this->siftDown($i);
-        }
     }
 
     /**
@@ -167,20 +149,19 @@ final class ArrayHeap extends Heap
      */
     public function siftDown(int $i): void
     {
+        $currentItemValue = $this->elements[$i]['value'];
         $child = 2 * $i;
 
         if ($child > $this->size) {
             return;
-        }
-        if ($this->elements[$child]['value'] > $this->elements[$i]['value']) {
+        } if ($this->elements[$child]['value'] > $currentItemValue) {
             $this->swap($child, $i);
             $this->siftDown($child);
         }
 
         if ($child + 1 > $this->size) {
             return;
-        }
-        if ($this->elements[$child + 1]['value'] > $this->elements[$i]['value']) {
+        } if ($this->elements[$child + 1]['value'] > $currentItemValue) {
             $this->swap($child + 1, $i);
             $this->siftDown($child + 1);
         }
@@ -219,21 +200,5 @@ final class ArrayHeap extends Heap
         }
 
         return null;
-    }
-
-    /**
-     * Checks representation invariant
-     *
-     * @return bool
-     */
-    public function repOk(): bool
-    {
-        if ($this->size === count($this->elements) + 1) {
-            return false;
-        } if (! $this->isHeapified()) {
-            return false;
-        }
-
-        return true;
     }
 }

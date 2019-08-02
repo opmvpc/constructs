@@ -2,9 +2,9 @@
 
 namespace Opmvpc\Constructs\Lists;
 
-use OutOfBoundsException;
 use Opmvpc\Constructs\Contracts\ListContract;
 use Opmvpc\Constructs\Structure;
+use OutOfBoundsException;
 
 /**
  * Mutable Array based List implementation

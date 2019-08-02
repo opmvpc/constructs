@@ -25,10 +25,12 @@ abstract class Node implements ArrayAccess
     }
 
     public function offsetGet($offset) {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return isset($this->container[$offset])
+            ? $this->container[$offset]
+            : null;
     }
 
-    public function dd(): void
+    public function dumpAndDie(): void
     {
         dd($this);
     }
