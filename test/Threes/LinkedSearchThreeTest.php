@@ -3,8 +3,9 @@
 namespace Opmvpc\Constructs\Test\Threes;
 
 use OutOfBoundsException;
-use Opmvpc\Constructs\Threes\SearchThrees\LinkedSearchThree;
+use BadMethodCallException;
 use Opmvpc\Constructs\Test\BaseTestCase;
+use Opmvpc\Constructs\Threes\SearchThrees\LinkedSearchThree;
 
 class LinkedSearchThreeTest extends BaseTestCase
 {
@@ -142,22 +143,32 @@ class LinkedSearchThreeTest extends BaseTestCase
         $this->assertEquals('world', $leaf->value());
     }
 
+    // public function testThreeRemove()
+    // {
+    //     $three = $this->createStructure()
+    //         ->insert(2, 0)
+    //         ->remove(2);
+
+    //     $this->assertTrue($three->repOk());
+    //     $this->assertEquals(0, count($three->toArray()));
+    // }
+
+    // public function testThreeRemoveFail()
+    // {
+    //     $three = $this->createStructure();
+    //     $this->expectException(OutOfBoundsException::class);
+    //     $three->remove(2);
+    // }
+
     public function testThreeRemove()
     {
         $three = $this->createStructure()
-            ->insert(2, 0)
-            ->remove(2);
+            ->insert(2, 0);
 
-        $this->assertTrue($three->repOk());
-        $this->assertEquals(0, count($three->toArray()));
-    }
-
-    public function testThreeRemoveFail()
-    {
-        $three = $this->createStructure();
-        $this->expectException(OutOfBoundsException::class);
+        $this->expectException(BadMethodCallException::class);
         $three->remove(2);
     }
+
 
     public function testSearchItem()
     {
@@ -180,12 +191,9 @@ class LinkedSearchThreeTest extends BaseTestCase
         $three = $this->createStructure()
             ->insert(4, 0)
             ->insert(3, 0)
-            ->remove(4)
             ->insert(2, 0)
             ->insert(6, 0)
-            ->remove(3)
-            ->insert(5, 0)
-            ->remove(6);
+            ->insert(5, 0);
 
         $this->assertTrue($three->repOk());
     }
@@ -201,11 +209,6 @@ class LinkedSearchThreeTest extends BaseTestCase
             ->insert(7, 0)
             ->insert(9, 0)
             ->insert(5, 0);
-
-        $three->remove(7);
-        $three->remove(5);
-        $three->remove(5);
-        $three->remove(5);
 
         $this->assertTrue($three->repOk());
         $this->assertEquals(4, count($three->toArray()));

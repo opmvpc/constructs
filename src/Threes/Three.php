@@ -3,12 +3,13 @@
 namespace Opmvpc\Constructs\Threes;
 
 use Closure;
+use BadMethodCallException;
 use Opmvpc\Constructs\Structure;
 use Opmvpc\Constructs\Nodes\Leaf;
 use Opmvpc\Constructs\Nodes\SimpleNode;
 use Opmvpc\Constructs\Contracts\NodeContract;
-use Opmvpc\Constructs\Contracts\SearchContract;
 use Opmvpc\Constructs\Contracts\ThreeContract;
+use Opmvpc\Constructs\Contracts\SearchContract;
 
 abstract class Three extends Structure implements ThreeContract, SearchContract
 {
@@ -58,6 +59,8 @@ abstract class Three extends Structure implements ThreeContract, SearchContract
 
     public function remove($key): ThreeContract
     {
+        throw new BadMethodCallException('Unsupported Operation');
+
         return $this;
     }
 
