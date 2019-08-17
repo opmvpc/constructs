@@ -133,6 +133,8 @@ class ArrayHeapTest extends BaseTestCase
         $this->assertEquals(4, count($heap->toArray()));
     }
 
+    // !!! BUG
+    // rep pas toujours ok...
     // public function testRandomArrayRepIsOk()
     // {
     //     $size = 100;

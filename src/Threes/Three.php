@@ -159,6 +159,5 @@ abstract class Three extends Structure implements ThreeContract, SearchContract
         } else {
             return $this->search($key, $leaf->right());
         }
-
     }
 }

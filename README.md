@@ -90,7 +90,7 @@ public function toArray(): array;
 #### Usage
 
 ```php
-$list = Construct::linkedStack()
+$stack = Construct::linkedStack()
     ->push(4)
     ->push(2)
     ->pop();
@@ -101,7 +101,7 @@ $list = Construct::linkedStack()
 #### Usage
 
 ```php
-$list = Construct::linkedStack()
+$stack = Construct::linkedStack()
     ->push(4)
     ->push(2)
     ->pop();
@@ -133,7 +133,7 @@ public function toArray(): array;
 #### Usage
 
 ```php
-$list = Construct::linkedQueue()
+$queue = Construct::linkedQueue()
     ->enqueue(4)
     ->enqueue(2)
     ->dequeue()
@@ -150,7 +150,9 @@ $list = Construct::linkedQueue()
 
 ## Threes
 
-### Available methods
+### ArrayHeap
+
+#### Available methods
 
 ```php
 public static function make(): ThreeContract;
@@ -161,12 +163,10 @@ public function get(int $i): SimpleNode;
 public function toArray(): array;
 ```
 
-### ArrayHeap
-
 #### Usage
 
 ```php
-$list = Construct::arrayHeap()
+$heap = Construct::arrayHeap()
     ->add(4)
     ->add(2)
     ->remove(2)
@@ -180,6 +180,47 @@ $list = Construct::arrayHeap()
 | get() | O(1) | O(nlog(n)) |
 | add() | O(nlog(n)) | O(nlog(n)) |
 | remove() | O(nlog(n)) | O(nlog(n)) |
+
+### LinkedSearchThree
+
+#### Available methods
+
+```php
+public static function make(): ThreeContract;
+public function root(): Leaf;
+public function min(): Leaf;
+public function max(): Leaf;
+public function search($key): Leaf;
+public function insert($index, $item): ThreeContract;
+public function toArray(): array;
+public function keysArray(): array;
+```
+
+#### Usage
+
+```php
+$three = Construct::arrayHeap()
+    ->insert(4, 'world')
+    ->insert(2, 'hello');
+
+    $three->min();
+    $three->max();
+```
+
+### Algorithmic Complexity
+
+| Method | ArraySearchThree | LinkedSearchThree |
+|---|---|---|
+| search() | O(2?) | O(h) |
+| insert() | O(2?) | O(h) |
+| remove() | O(2?) | O(h) |
+
+### Space Complexity
+
+| Type | Space complexity |
+|---|---|
+| ArraySearchThree | O(2?) |
+| LinkedSearchThree | O(n) |
 
 ## Helpers
 
