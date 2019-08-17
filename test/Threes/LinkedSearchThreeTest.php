@@ -143,6 +143,7 @@ class LinkedSearchThreeTest extends BaseTestCase
         $this->assertEquals('world', $leaf->value());
     }
 
+    // TODO remove()
     // public function testThreeRemove()
     // {
     //     $three = $this->createStructure()
@@ -214,16 +215,16 @@ class LinkedSearchThreeTest extends BaseTestCase
         $this->assertEquals(4, count($three->toArray()));
     }
 
-    // public function testRandomArrayRepIsOk()
-    // {
-    //     $size = 100;
-    //     $three = $this->createStructure();
+    public function testRandomArrayRepIsOk()
+    {
+        $size = 100;
+        $three = $this->createStructure();
 
-    //     for ($i=0; $i < $size; $i++) {
-    //         $randomNumber = rand(1, 1000);
-    //         $three->insert($randomNumber, 0);
-    //     }
+        for ($i=0; $i < $size; $i++) {
+            $randomNumber = rand(1, 1000);
+            $three->insert($randomNumber, 0);
+        }
 
-    //     $this->assertTrue($three->repOk());
-    // }
+        $this->assertTrue($three->repOk());
+    }
 }
