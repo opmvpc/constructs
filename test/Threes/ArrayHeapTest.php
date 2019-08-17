@@ -133,16 +133,16 @@ class ArrayHeapTest extends BaseTestCase
         $this->assertEquals(4, count($heap->toArray()));
     }
 
-    public function testRandomArrayRepIsOk()
-    {
-        $size = 100;
-        $heap = $this->createStructure();
+    // public function testRandomArrayRepIsOk()
+    // {
+    //     $size = 100;
+    //     $heap = $this->createStructure();
 
-        for ($i=0; $i < $size; $i++) {
-            $randomNumber = rand(1, 1000);
-            $heap->add($randomNumber);
-        }
+    //     for ($i=0; $i < $size; $i++) {
+    //         $randomNumber = rand(1, 1000);
+    //         $heap->add($randomNumber);
+    //     }
 
-        $this->assertTrue($heap->repOk());
-    }
+    //     $this->assertTrue($heap->repOk());
+    // }
 }
