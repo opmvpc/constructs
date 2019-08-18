@@ -13,7 +13,7 @@ Constructs provides simple data structures with fluent api. All avalaible struct
     * ArrayQueue
 * Threes
     * ArrayHeap
-*Helpers
+* Helpers
     * toArray()
     * dump() & dumpAndDie()
 

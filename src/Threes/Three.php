@@ -160,4 +160,66 @@ abstract class Three extends Structure implements ThreeContract, SearchContract
             return $this->search($key, $leaf->right());
         }
     }
+
+    /**
+     * L'arbre doit avoir ses clés triées par ordre croissant
+     * si on effectue un parcours infixe
+     *
+     * @return boolean
+     */
+    public function repOk(): bool
+    {
+        if (! $this->isSorted()) {
+            return false;
+        }
+
+        if (! $this->isBinaryThree($this->root)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function isSorted(): bool
+    {
+        $array = $this->keysArray();
+        $arrayToSort = $array;
+        sort($arrayToSort);
+
+        for ($i=0; $i < count($array); $i++) {
+            if ($array[$i] !== $arrayToSort[$i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Check si le noeud courant
+     * est plus grand que la feuille de gauche
+     * est plus petit que la feuille de droite
+     *
+     * parcours infixe
+     *
+     * @return boolean
+     */
+    public function isBinaryThree(?Leaf $leaf, ?bool $isBinaryThree = true): bool
+    {
+        if (is_null($leaf)) {
+            return $isBinaryThree;
+        }
+
+        if (! is_null($leaf)) {
+            $this->isBinaryThree($leaf->left(), $isBinaryThree);
+            if ($leaf->left() !== null && $leaf->key() < $leaf->left()->key()) {
+                $isBinaryThree = false;
+            } if ($leaf->right() !== null && $leaf->key() > $leaf->right()->key()) {
+                $isBinaryThree = false;
+            }
+            $this->isBinaryThree($leaf->right(), $isBinaryThree);
+        }
+
+        return $isBinaryThree;
+    }
 }

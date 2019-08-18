@@ -227,4 +227,30 @@ class LinkedSearchThreeTest extends BaseTestCase
 
         $this->assertTrue($three->repOk());
     }
+
+    public function testIsBinaryThreeOk()
+    {
+        $three = $this->createStructure()
+            ->insert(4, 0)
+            ->insert(3, 0)
+            ->insert(2, 0)
+            ->insert(6, 0)
+            ->insert(5, 0);
+
+        $this->assertTrue($three->isBinaryThree($three->root()));
+    }
+
+    public function testIsBinaryThreeFail()
+    {
+        $three = $this->createStructure()
+            ->insert(4, 0)
+            ->insert(3, 0)
+            ->insert(2, 0)
+            ->insert(6, 0)
+            ->insert(5, 0);
+
+        $three->root()['key'] = 1;
+
+        $this->assertFalse($three->isBinaryThree($three->root()));
+    }
 }
