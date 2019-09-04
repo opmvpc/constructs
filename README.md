@@ -253,7 +253,6 @@ If you are more a "Dump and die" person, ```dumpAndDie()``` method is also avail
 $list = Construct::linkedList()
     ->add(4)
     ->add(2)
-    ->dd()
     ->remove(4)
     ->add(6)
     ->dumpAndDie();
