@@ -24,7 +24,7 @@
             "Opmvpc\\Constructs\\Test\\": "test/"
         },
         "files": [
-            "vendor\\symfony\\ar-dumper\\Resources\\functions\\dump.php"
+            "vendor\\symfony\\var-dumper\\Resources\\functions\\dump.php"
         ]
     }
 }
