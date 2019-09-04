@@ -4,11 +4,13 @@ namespace Opmvpc\Constructs\Test\Nodes;
 
 use Opmvpc\Constructs\Nodes\Leaf;
 use Opmvpc\Constructs\Test\BaseTestCase;
+use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
 
 /**
  * @group leaf
  */
 class LeafTest extends BaseTestCase {
+    use VarDumperTestTrait;
 
     const TEST_INT_KEY = 1;
     const TEST_STRING_KEY = 'hello';
@@ -31,9 +33,48 @@ class LeafTest extends BaseTestCase {
         $this->assertObjectHasAttribute('container', $item);
     }
 
+    public function testConstructNullKey()
+    {
+        $item = $this->createIntKey(null);
+
+        $this->assertObjectHasAttribute('container', $item);
+    }
+
     public function testConstructStringKey()
     {
         $item = $this->createStringKey();
+
+        $this->assertObjectHasAttribute('container', $item);
+    }
+
+    public function testOffsetExists()
+    {
+        $item = $this->createIntKey();
+        $this->assertTrue($item->offsetExists('key'));
+
+        $this->assertObjectHasAttribute('container', $item);
+    }
+
+    public function testOffsetExistsFail()
+    {
+        $item = $this->createIntKey();
+        $this->assertFalse($item->offsetExists('test'));
+
+        $this->assertObjectHasAttribute('container', $item);
+    }
+
+    public function testOffsetSet()
+    {
+        $item = $this->createIntKey();
+        $item->offsetSet(null, 0);
+
+        $this->assertObjectHasAttribute('container', $item);
+    }
+
+    public function testOffsetUnsetFail()
+    {
+        $item = $this->createIntKey();
+        $item->offsetUnset('key');
 
         $this->assertObjectHasAttribute('container', $item);
     }
@@ -78,5 +119,12 @@ class LeafTest extends BaseTestCase {
         $item = $this->createStringKey();
 
         $this->assertTrue($item->right() === null);
+    }
+
+    public function testDump()
+    {
+        $item = $this->createStringKey();
+
+        $this->assertDumpEquals($item, $item);
     }
 }

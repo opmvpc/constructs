@@ -10,6 +10,7 @@ use Opmvpc\Constructs\Stacks\ArrayStack;
 use Opmvpc\Constructs\Test\BaseTestCase;
 use Opmvpc\Constructs\Stacks\LinkedStack;
 use Opmvpc\Constructs\Threes\Heaps\ArrayHeap;
+use Opmvpc\Constructs\Threes\SearchThrees\LinkedSearchThree;
 
 class ConstructTest extends BaseTestCase
 {
@@ -84,5 +85,18 @@ class ConstructTest extends BaseTestCase
             ->add("world");
 
         $this->assertEquals($list->toArray(), ['world', 'hello']);
+    }
+
+    public function testSearchThree()
+    {
+        $list = Construct::searchThree();
+        $this->assertInstanceOf(LinkedSearchThree::class, $list);
+
+        $list
+            ->insert("hello", 0)
+            ->insert("world", 0);
+
+        $this->assertEquals($list->toArray()[0]['key'], 'hello');
+        $this->assertEquals($list->toArray()[1]['key'], 'world');
     }
 }

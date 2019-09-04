@@ -8,6 +8,8 @@ use Opmvpc\Constructs\Queues\ArrayQueue;
 use Opmvpc\Constructs\Stacks\ArrayStack;
 use Opmvpc\Constructs\Stacks\LinkedStack;
 use Opmvpc\Constructs\Threes\Heaps\ArrayHeap;
+use Opmvpc\Constructs\Threes\SearchThrees\SearchThree;
+use Opmvpc\Constructs\Threes\SearchThrees\LinkedSearchThree;
 
 /**
 *  Construct simple data structures
@@ -75,5 +77,15 @@ final class Construct
     public static function arrayHeap()
     {
         return ArrayHeap::make();
+    }
+
+    /**
+     * Returns a new SearchThree
+     *
+     * @return LinkedSearchThree
+     */
+    public static function searchThree()
+    {
+        return LinkedSearchThree::make();
     }
 }

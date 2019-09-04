@@ -113,7 +113,6 @@ final class LinkedList extends Structure implements ListContract
      */
     public function remove($item = null): ListContract
     {
-        $item;
         throw new BadMethodCallException('Unsupported Operation');
 
         return $this;
@@ -135,7 +134,6 @@ final class LinkedList extends Structure implements ListContract
         for ($i=0; $i <= $index; $i++) {
             if (is_null($currentItem)) {
                 throw new OutOfBoundsException('Constructs ArrayList.get()');
-                return;
             }
 
             if ($i === $index) {

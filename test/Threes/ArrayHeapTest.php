@@ -133,6 +133,30 @@ class ArrayHeapTest extends BaseTestCase
         $this->assertEquals(4, count($heap->toArray()));
     }
 
+    public function testIsHeapifiedFailLeftChild()
+    {
+        $heap = $this->createStructure()
+            ->add(3)
+            ->add(2);
+
+        $heap->get(1)['value'] = 1;
+
+        $this->assertFalse($heap->repOk());
+    }
+
+    public function testIsHeapifiedFailRightChild()
+    {
+        $heap = $this->createStructure()
+            ->add(3)
+            ->add(2)
+            ->add(4)
+            ->add(7);
+
+        $heap->get(3)['value'] = 20;
+
+        $this->assertFalse($heap->repOk());
+    }
+
     // !!! BUG
     // rep pas toujours ok...
     // public function testRandomArrayRepIsOk()

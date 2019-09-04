@@ -53,6 +53,14 @@ class LinkedSearchThreeTest extends BaseTestCase
         $this->assertEquals([1, 3, 4, 6, 9, 12], $three->keysArray());
     }
 
+    public function testKeysArrayNull()
+    {
+        $three = $this->createStructure();
+
+        $this->assertEquals([], $three->keysArray());
+    }
+
+
     public function testMin()
     {
         $three = $this->createStructure()
@@ -129,7 +137,7 @@ class LinkedSearchThreeTest extends BaseTestCase
         $this->assertEquals(11, $three->successor($three->root())->key());
     }
 
-    public function testLinkedSearchThree()
+    public function testLinkedSearchThreeRight()
     {
         $three = $this->createStructure();
 
@@ -141,6 +149,21 @@ class LinkedSearchThreeTest extends BaseTestCase
             ->search(2, $three->root());
 
         $this->assertEquals('world', $leaf->value());
+    }
+
+    public function testLinkedSearchThreeLeft()
+    {
+        $three = $this->createStructure();
+
+        $three
+            ->insert(2, "hello")
+            ->insert(3, "world")
+            ->insert(1, "aaa");
+
+        $leaf = $three
+            ->search(1, $three->root());
+
+        $this->assertEquals('aaa', $leaf->value());
     }
 
     // TODO remove()
@@ -199,6 +222,17 @@ class LinkedSearchThreeTest extends BaseTestCase
         $this->assertTrue($three->repOk());
     }
 
+    public function testRepOkFail()
+    {
+        $three = $this->createStructure()
+            ->insert(4, 0)
+            ->insert(3, 0);
+
+        $three->search(3, $three->root())['key'] = 5;
+
+        $this->assertFalse($three->repOk());
+    }
+
     public function testToArray()
     {
         $three = $this->createStructure()
@@ -240,7 +274,7 @@ class LinkedSearchThreeTest extends BaseTestCase
         $this->assertTrue($three->isBinaryThree($three->root()));
     }
 
-    public function testIsBinaryThreeFail()
+    public function testIsBinaryThreeFailLeft()
     {
         $three = $this->createStructure()
             ->insert(4, 0)
@@ -250,6 +284,20 @@ class LinkedSearchThreeTest extends BaseTestCase
             ->insert(5, 0);
 
         $three->root()['key'] = 1;
+
+        $this->assertFalse($three->isBinaryThree($three->root()));
+    }
+
+    public function testIsBinaryThreeFailRight()
+    {
+        $three = $this->createStructure()
+            ->insert(4, 0)
+            ->insert(3, 0)
+            ->insert(2, 0)
+            ->insert(6, 0)
+            ->insert(5, 0);
+
+        $three->root()['key'] = 10;
 
         $this->assertFalse($three->isBinaryThree($three->root()));
     }
