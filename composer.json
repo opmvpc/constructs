@@ -9,7 +9,7 @@
             "email": "thibsix@outlook.be"
         }
     ],
-    "type": "package",
+    "type": "library",
     "require": {
         "php": ">=7.2",
         "symfony/var-dumper": "^4.3"
@@ -24,7 +24,7 @@
             "Opmvpc\\Constructs\\Test\\": "test/"
         },
         "files": [
-            "vendor/symfony/var-dumper/Resources/functions/dump.php"
+            "vendor\\symfony\\ar-dumper\\Resources\\functions\\dump.php"
         ]
     }
 }
