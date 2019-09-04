@@ -22,9 +22,6 @@
         "psr-4": {
             "Opmvpc\\Constructs\\": "src/",
             "Opmvpc\\Constructs\\Test\\": "test/"
-        },
-        "files": [
-            "vendor\\symfony\\var-dumper\\Resources\\functions\\dump.php"
-        ]
+        }
     }
 }
