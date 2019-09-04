@@ -1,6 +1,6 @@
 # Constructs
 
-Constructs provides simple data structures with fluent api. All avalaible structures are fully tested (I think... 😁).
+Constructs provides simple data structures with a fluent api.
 
 * Install
 * Lists
@@ -13,6 +13,7 @@ Constructs provides simple data structures with fluent api. All avalaible struct
     * ArrayQueue
 * Threes
     * ArrayHeap
+    * SearchThree
 * Helpers
     * toArray()
     * dump() & dumpAndDie()
@@ -211,15 +212,15 @@ $three = Construct::arrayHeap()
 
 | Method | ArraySearchThree | LinkedSearchThree |
 |---|---|---|
-| search() | O(2?) | O(h) |
-| insert() | O(2?) | O(h) |
-| remove() | O(2?) | O(h) |
+| search() | O(2ⁿ) | O(h) |
+| insert() | O(2ⁿ) | O(h) |
+| remove() | O(2ⁿ) | O(h) |
 
 ### Space Complexity
 
 | Type | Space complexity |
 |---|---|
-| ArraySearchThree | O(2?) |
+| ArraySearchThree | O(2ⁿ) |
 | LinkedSearchThree | O(n) |
 
 ## Helpers
