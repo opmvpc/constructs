@@ -22,7 +22,7 @@ Constructs provides simple data structures with a fluent api.
 
 Just add this package to your composer project:
 
-```bash
+```shell
 $ composer require opmvpc/constructs
 ```
 
