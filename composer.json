@@ -23,5 +23,10 @@
             "Opmvpc\\Constructs\\": "src/",
             "Opmvpc\\Constructs\\Test\\": "test/"
         }
+    },
+    "scripts": {
+        "test": [
+            "phpunit"
+        ]
     }
 }
