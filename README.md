@@ -1,3 +1,7 @@
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/opmvpc/constructs.svg?style=flat-square)](https://packagist.org/packages/opmvpc/constructs)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/opmvpc/constructs/run-tests?label=tests)](https://github.com/opmvpc/constructs/actions?query=workflow%3Arun-tests+branch%3Amaster)
+[![Total Downloads](https://img.shields.io/packagist/dt/opmvpc/constructs.svg?style=flat-square)](https://packagist.org/packages/opmvpc/constructs)
+
 # Constructs
 
 Constructs provides simple data structures with a fluent api.
