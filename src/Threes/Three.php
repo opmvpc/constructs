@@ -166,7 +166,7 @@ abstract class Three extends Structure implements ThreeContract, SearchContract
      * L'arbre doit avoir ses clés triées par ordre croissant
      * si on effectue un parcours infixe
      *
-     * @return boolean
+     * @return bool
      */
     public function repOk(): bool
     {
@@ -203,7 +203,7 @@ abstract class Three extends Structure implements ThreeContract, SearchContract
      *
      * parcours infixe
      *
-     * @return boolean
+     * @return bool
      */
     public function isBinaryThree(?Leaf $leaf, ?bool $isBinaryThree = true): bool
     {
