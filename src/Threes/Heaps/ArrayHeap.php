@@ -184,8 +184,10 @@ final class ArrayHeap extends Heap
     private function findFirstIndex(SimpleNode $item): ?int
     {
         foreach ($this->elements as $key => $element) {
-            if ($item['value'] === $element['value']) {
-                return $key;
+            if ($element !== null) {
+                if ($item['value'] === $element['value']) {
+                    return $key;
+                }
             }
         }
 
