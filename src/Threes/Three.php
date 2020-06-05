@@ -59,8 +59,6 @@ abstract class Three extends Structure implements ThreeContract, SearchContract
     public function remove($key): ThreeContract
     {
         throw new BadMethodCallException('Unsupported Operation');
-
-        return $this;
     }
 
     public function toArray(): array
@@ -71,9 +69,7 @@ abstract class Three extends Structure implements ThreeContract, SearchContract
             return $array;
         }
 
-        $this->addToArrayInOrder($this->root, $array, function () {
-            return $this;
-        });
+        $this->addToArrayInOrder($this->root, $array, 'toArray');
 
         return $array;
     }
@@ -86,27 +82,28 @@ abstract class Three extends Structure implements ThreeContract, SearchContract
             return $array;
         }
 
-        $this->addToArrayInOrder($this->root, $array, function () {
-            return $this->key();
-        });
+        $this->addToArrayInOrder($this->root, $array, 'keysArray');
 
         return $array;
     }
 
-    public function addToArrayInOrder(?Leaf $leaf, array &$array, callable $closure)
+    public function addToArrayInOrder(?Leaf $leaf, array &$array, string $caller)
     {
         if (is_null($leaf)) {
             return $array;
         }
 
-        if (! is_null($leaf)) {
-            $this->addToArrayInOrder($leaf->left(), $array, $closure);
-            $array[] = $closure->call($leaf);
-            $this->addToArrayInOrder($leaf->right(), $array, $closure);
+        $this->addToArrayInOrder($leaf->left(), $array, $caller);
+        if ($caller === 'keysArray') {
+            $array[] = $leaf->key();
+        } else {
+            $array[] = $leaf;
         }
+
+        $this->addToArrayInOrder($leaf->right(), $array, $caller);
     }
 
-    public function min(?Leaf $leaf = null): Leaf
+    public function min(?Leaf $leaf = null): ?Leaf
     {
         if (is_null($leaf)) {
             $leaf = $this->root;
@@ -119,7 +116,7 @@ abstract class Three extends Structure implements ThreeContract, SearchContract
         return $leaf;
     }
 
-    public function max(?Leaf $leaf = null): Leaf
+    public function max(?Leaf $leaf = null): ?Leaf
     {
         if (is_null($leaf)) {
             $leaf = $this->root;
@@ -134,7 +131,7 @@ abstract class Three extends Structure implements ThreeContract, SearchContract
 
     public function successor(Leaf $leaf): ?Leaf
     {
-        $newLeaf = Leaf::make(null);
+        Leaf::make(null);
 
         if (! is_null($leaf->right())) {
             return $this->min($leaf->right());
@@ -197,30 +194,28 @@ abstract class Three extends Structure implements ThreeContract, SearchContract
     }
 
     /**
-     * Check si le noeud courant
-     * est plus grand que la feuille de gauche
-     * est plus petit que la feuille de droite
+     *  Check si le noeud courant
+     *  est plus grand que la feuille de gauche
+     *  est plus petit que la feuille de droite
      *
-     * parcours infixe
+     *  parcours infixe
      *
-     * @return bool
+     * @return bool|null
      */
-    public function isBinaryThree(?Leaf $leaf, ?bool $isBinaryThree = true): bool
+    public function isBinaryThree(?Leaf $leaf, ?bool $isBinaryThree = true): ?bool
     {
         if (is_null($leaf)) {
             return $isBinaryThree;
         }
 
-        if (! is_null($leaf)) {
-            $this->isBinaryThree($leaf->left(), $isBinaryThree);
-            if ($leaf->left() !== null && $leaf->key() < $leaf->left()->key()) {
-                $isBinaryThree = false;
-            }
-            if ($leaf->right() !== null && $leaf->key() > $leaf->right()->key()) {
-                $isBinaryThree = false;
-            }
-            $this->isBinaryThree($leaf->right(), $isBinaryThree);
+        $this->isBinaryThree($leaf->left(), $isBinaryThree);
+        if ($leaf->left() !== null && $leaf->key() < $leaf->left()->key()) {
+            $isBinaryThree = false;
         }
+        if ($leaf->right() !== null && $leaf->key() > $leaf->right()->key()) {
+            $isBinaryThree = false;
+        }
+        $this->isBinaryThree($leaf->right(), $isBinaryThree);
 
         return $isBinaryThree;
     }

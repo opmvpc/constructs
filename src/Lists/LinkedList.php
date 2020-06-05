@@ -116,8 +116,6 @@ final class LinkedList extends Structure implements ListContract
     public function remove($item = null): ListContract
     {
         throw new BadMethodCallException('Unsupported Operation');
-
-        return $this;
     }
 
     /**
@@ -127,7 +125,7 @@ final class LinkedList extends Structure implements ListContract
      *
      * @param int $index
      *
-     * @return $value
+     * @return mixed|null $value
      */
     public function get(int $index)
     {

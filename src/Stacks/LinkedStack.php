@@ -45,15 +45,15 @@ final class LinkedStack extends Structure implements StackContract
      */
     public function isEmpty(): bool
     {
-        return is_null($this->head) ?? false ;
+        return is_null($this->head);
     }
 
     /**
      * Push an item at the top of the stack
      *
-     * @param [type] $item
+     * @param mixed $item
      *
-     * @return ArrayStack
+     * @return StackContract
      */
     public function push($item): StackContract
     {
@@ -76,14 +76,12 @@ final class LinkedStack extends Structure implements StackContract
      *
      * @throws OutOfBoundsException
      *
-     * @return ArrayStack
+     * @return StackContract
      */
     public function pop(): StackContract
     {
         if ($this->isEmpty()) {
             throw new OutOfBoundsException('Constructs LinkedStack.pop()');
-
-            return $this;
         }
 
         $newHead = $this->head->getNext();
@@ -97,7 +95,7 @@ final class LinkedStack extends Structure implements StackContract
      *
      * @throws OutOfBoundsException
      *
-     * @return [Type] $item
+     * @return mixed $item
      */
     public function top()
     {

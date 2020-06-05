@@ -6,8 +6,16 @@ use ArrayAccess;
 
 abstract class Node implements ArrayAccess
 {
+    /**
+     * @var array
+     */
     protected $container = [];
 
+    /**
+     * @param mixed $offset
+     * @param mixed $value
+     * @return void
+     */
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -17,16 +25,28 @@ abstract class Node implements ArrayAccess
         }
     }
 
+    /**
+     * @param mixed $offset
+     * @return bool
+     */
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
     }
 
+    /**
+     * @param mixed $offset
+     * @return void
+     */
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
     }
 
+    /**
+     * @param mixed $offset
+     * @return mixed|null
+     */
     public function offsetGet($offset)
     {
         return isset($this->container[$offset])
@@ -39,6 +59,9 @@ abstract class Node implements ArrayAccess
         dd($this);
     }
 
+    /**
+     * @return $this
+     */
     public function dump()
     {
         dump($this);

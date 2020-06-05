@@ -77,7 +77,7 @@ final class ArrayList extends Structure implements ListContract
      *
      * @param $item
      *
-     * @return void
+     * @return ListContract
      */
     public function add($item): ListContract
     {
@@ -96,7 +96,7 @@ final class ArrayList extends Structure implements ListContract
      *
      * @throws OutOfBoundsException
      *
-     * @return void
+     * @return self
      */
     public function remove($item): ListContract
     {
@@ -117,7 +117,7 @@ final class ArrayList extends Structure implements ListContract
      *
      * @param int $i
      *
-     * @return void
+     * @return mixed
      */
     public function get(int $i)
     {

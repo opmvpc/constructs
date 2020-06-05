@@ -11,9 +11,9 @@ interface SearchContract
 {
     public function search($key, ?Leaf $leaf): ?Leaf;
 
-    public function min(): Leaf;
+    public function min(): ?Leaf;
 
-    public function max(): Leaf;
+    public function max(): ?Leaf;
 
     public function successor(Leaf $leaf): ?Leaf;
 }

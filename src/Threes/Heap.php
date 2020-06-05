@@ -2,11 +2,26 @@
 
 namespace Opmvpc\Constructs\Threes;
 
-use Opmvpc\Constructs\Contracts\ThreeContract;
 use Opmvpc\Constructs\Structure;
+use Opmvpc\Constructs\Nodes\SimpleNode;
+use Opmvpc\Constructs\Contracts\ThreeContract;
 
 abstract class Heap extends Structure implements ThreeContract
 {
+    /**
+     * List size
+     *
+     * @var int
+     */
+    protected $size;
+
+    /**
+     *  Elements List
+     *
+     * @var array<int, SimpleNode|null>
+     */
+    protected $elements;
+
     /**
      * Checks if children are lower then parent node
      *
@@ -67,4 +82,8 @@ abstract class Heap extends Structure implements ThreeContract
             $this->siftDown($i);
         }
     }
+
+    abstract public function swap(int $first, int $second): void;
+
+    abstract public function siftDown(int $i): void;
 }

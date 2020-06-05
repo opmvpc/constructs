@@ -11,6 +11,11 @@ final class SimpleNode extends Node
         ];
     }
 
+    /**
+     *
+     * @param mixed $item
+     * @return SimpleNode
+     */
     public static function make($item)
     {
         return new SimpleNode($item);

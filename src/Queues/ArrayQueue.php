@@ -78,7 +78,7 @@ final class ArrayQueue extends Structure implements QueueContract
      */
     public function isEmpty(): bool
     {
-        return $this->size === 0 ?? false;
+        return $this->size === 0;
     }
 
     /**
@@ -86,7 +86,7 @@ final class ArrayQueue extends Structure implements QueueContract
      * $this->size + 1
      * $this->last + 1
      *
-     * @param [type] $item
+     * @param mixed $item
      *
      * @return QueueContract
      */
@@ -107,7 +107,7 @@ final class ArrayQueue extends Structure implements QueueContract
      *
      * @throws OutOfBoundsException
      *
-     * @return [type] $item
+     * @return mixed $item
      */
     public function dequeue()
     {
@@ -118,8 +118,6 @@ final class ArrayQueue extends Structure implements QueueContract
             $message .= $exception->getMessage();
 
             throw new OutOfBoundsException($message);
-
-            return;
         }
 
         $this->size -= 1;
@@ -133,7 +131,7 @@ final class ArrayQueue extends Structure implements QueueContract
      *
      * @throws OutOfBoundsException
      *
-     * @return [type] $item
+     * @return mixed $item
      */
     public function peek()
     {

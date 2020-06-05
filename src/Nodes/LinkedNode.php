@@ -9,9 +9,8 @@ final class LinkedNode
 {
 
     /**
-     * Item Value
      *
-     * @var var
+     * @var mixed
      */
     private $value;
 
@@ -36,7 +35,7 @@ final class LinkedNode
     /**
      * Returns contained value
      *
-     * @return void
+     * @return mixed
      */
     public function getValue()
     {
@@ -46,9 +45,9 @@ final class LinkedNode
     /**
      * Returns next node
      *
-     * @return void
+     * @return self|null
      */
-    public function getNext()
+    public function getNext(): ?self
     {
         return $this->next;
     }

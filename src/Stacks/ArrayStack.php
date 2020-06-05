@@ -62,13 +62,13 @@ final class ArrayStack extends Structure implements StackContract
      */
     public function isEmpty(): bool
     {
-        return $this->size === 0 ?? false ;
+        return $this->size === 0;
     }
 
     /**
      * Push an item at the top of the stack
      *
-     * @param [type] $item
+     * @param mixed $item
      *
      * @return ArrayStack
      */
@@ -92,8 +92,6 @@ final class ArrayStack extends Structure implements StackContract
     {
         if ($this->size === 0) {
             throw new OutOfBoundsException('Constructs ArrayStack.pop()');
-
-            return $this;
         }
 
         $this->size -= 1;
@@ -107,7 +105,7 @@ final class ArrayStack extends Structure implements StackContract
      *
      * @throws OutOfBoundsException
      *
-     * @return [Type] $item
+     * @return mixed $item
      */
     public function top()
     {

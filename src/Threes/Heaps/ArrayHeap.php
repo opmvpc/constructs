@@ -14,19 +14,6 @@ use OutOfBoundsException;
  */
 final class ArrayHeap extends Heap
 {
-    /**
-     * List size
-     *
-     * @var int
-     */
-    protected $size;
-
-    /**
-     * Elements List
-     *
-     * @var array<SimpleNode>
-     */
-    protected $elements;
 
     /**
      * Base constructor
@@ -92,7 +79,7 @@ final class ArrayHeap extends Heap
         $key = $this->findFirstIndex(SimpleNode::make($item));
         if ($key !== null) {
             unset($this->elements[$key]);
-            $this->elements = array_values($this->elements);
+            $this->elements = array_values((array) $this->elements);
             $this->size -= 1;
             $this->heapify();
         } else {
@@ -107,9 +94,9 @@ final class ArrayHeap extends Heap
      *
      * @param int $i
      *
-     * @return SimpleNode
+     * @return SimpleNode|null
      */
-    public function get(int $i): SimpleNode
+    public function get(int $i): ?SimpleNode
     {
         try {
             return $this->elements[$i];
@@ -124,7 +111,7 @@ final class ArrayHeap extends Heap
     /**
      * Get structures items as an array
      *
-     * @return array<SimpleNode>
+     * @return array<int, SimpleNode|null>
      */
     public function toArray(): array
     {
