@@ -2,9 +2,9 @@
 
 namespace Opmvpc\Constructs\Threes;
 
-use Opmvpc\Constructs\Structure;
-use Opmvpc\Constructs\Nodes\SimpleNode;
 use Opmvpc\Constructs\Contracts\ThreeContract;
+use Opmvpc\Constructs\Nodes\SimpleNode;
+use Opmvpc\Constructs\Structure;
 
 abstract class Heap extends Structure implements ThreeContract
 {
