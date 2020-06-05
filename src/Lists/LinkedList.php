@@ -67,12 +67,13 @@ final class LinkedList extends Structure implements ListContract
     public function contains($item): bool
     {
         $currentItem = $this->head;
-        for ($i=0; $i < $this->size; $i++) {
+        for ($i = 0; $i < $this->size; $i++) {
             if ($currentItem->getValue() === $item) {
                 return true;
             }
             $currentItem = $currentItem->getNext();
         }
+
         return false;
     }
 
@@ -91,6 +92,7 @@ final class LinkedList extends Structure implements ListContract
 
         if (is_null($this->head)) {
             $this->head = $newNode;
+
             return $this;
         }
 
@@ -131,7 +133,7 @@ final class LinkedList extends Structure implements ListContract
     {
         $currentItem = $this->head;
 
-        for ($i=0; $i <= $index; $i++) {
+        for ($i = 0; $i <= $index; $i++) {
             if (is_null($currentItem)) {
                 throw new OutOfBoundsException('Constructs ArrayList.get()');
             }

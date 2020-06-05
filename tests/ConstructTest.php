@@ -1,20 +1,18 @@
 <?php
 
-namespace Opmvpc\Constructs\Test;
+namespace Opmvpc\Constructs\Tests;
 
 use Opmvpc\Constructs\Construct;
 use Opmvpc\Constructs\Lists\ArrayList;
 use Opmvpc\Constructs\Lists\LinkedList;
 use Opmvpc\Constructs\Queues\ArrayQueue;
 use Opmvpc\Constructs\Stacks\ArrayStack;
-use Opmvpc\Constructs\Test\BaseTestCase;
 use Opmvpc\Constructs\Stacks\LinkedStack;
 use Opmvpc\Constructs\Threes\Heaps\ArrayHeap;
 use Opmvpc\Constructs\Threes\SearchThrees\LinkedSearchThree;
 
 class ConstructTest extends BaseTestCase
 {
-
     public function testArrayList()
     {
         $list = Construct::arrayList();

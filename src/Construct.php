@@ -8,8 +8,8 @@ use Opmvpc\Constructs\Queues\ArrayQueue;
 use Opmvpc\Constructs\Stacks\ArrayStack;
 use Opmvpc\Constructs\Stacks\LinkedStack;
 use Opmvpc\Constructs\Threes\Heaps\ArrayHeap;
-use Opmvpc\Constructs\Threes\SearchThrees\SearchThree;
 use Opmvpc\Constructs\Threes\SearchThrees\LinkedSearchThree;
+use Opmvpc\Constructs\Threes\SearchThrees\SearchThree;
 
 /**
 *  Construct simple data structures

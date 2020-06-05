@@ -1,10 +1,10 @@
 <?php
 
-namespace Opmvpc\Constructs\Test\Lists;
+namespace Opmvpc\Constructs\Tests\Lists;
 
-use OutOfBoundsException;
 use Opmvpc\Constructs\Lists\ArrayList;
-use Opmvpc\Constructs\Test\BaseTestCase;
+use Opmvpc\Constructs\Tests\BaseTestCase;
+use OutOfBoundsException;
 
 class ArrayListTest extends BaseTestCase
 {
@@ -145,5 +145,4 @@ class ArrayListTest extends BaseTestCase
         $this->assertEquals(4, count($list->toArray()));
         $this->assertEquals(self::TEST_ARRAY, $list->toArray());
     }
-
 }

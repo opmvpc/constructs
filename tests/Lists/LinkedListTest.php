@@ -1,11 +1,11 @@
 <?php
 
-namespace Opmvpc\Constructs\Test\Lists;
+namespace Opmvpc\Constructs\Tests\Lists;
 
-use Opmvpc\Constructs\Test\BaseTestCase;
-use Opmvpc\Constructs\Lists\LinkedList;
-use OutOfBoundsException;
 use BadMethodCallException;
+use Opmvpc\Constructs\Lists\LinkedList;
+use Opmvpc\Constructs\Tests\BaseTestCase;
+use OutOfBoundsException;
 
 class LinkedListTest extends BaseTestCase
 {
@@ -13,7 +13,8 @@ class LinkedListTest extends BaseTestCase
 
     private function createStructure()
     {
-        return LinkedList::make();;
+        return LinkedList::make();
+        ;
     }
 
     public function testConstruct()

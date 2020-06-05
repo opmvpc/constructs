@@ -92,6 +92,7 @@ final class ArrayStack extends Structure implements StackContract
     {
         if ($this->size === 0) {
             throw new OutOfBoundsException('Constructs ArrayStack.pop()');
+
             return $this;
         }
 
@@ -114,7 +115,7 @@ final class ArrayStack extends Structure implements StackContract
             throw new OutOfBoundsException('Constructs ArrayStack.top()');
         }
 
-        return $this->elements[$this->size-1];
+        return $this->elements[$this->size - 1];
     }
 
     /**
@@ -126,7 +127,7 @@ final class ArrayStack extends Structure implements StackContract
     {
         $array = [];
 
-        for ($i=0; $i < $this->size; $i++) {
+        for ($i = 0; $i < $this->size; $i++) {
             $array[] = $this->elements[$i];
         }
 

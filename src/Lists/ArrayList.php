@@ -67,6 +67,7 @@ final class ArrayList extends Structure implements ListContract
         if (\array_search($item, $this->elements) !== false) {
             return true;
         }
+
         return false;
     }
 
@@ -125,6 +126,7 @@ final class ArrayList extends Structure implements ListContract
         } catch (\Throwable $exception) {
             $message = 'Constructs ArrayList.get() ';
             $message .= $exception->getMessage();
+
             throw new OutOfBoundsException($message);
         }
     }

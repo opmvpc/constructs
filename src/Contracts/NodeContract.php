@@ -2,8 +2,6 @@
 
 namespace Opmvpc\Constructs\Contracts;
 
-use ArrayAccess;
-
 /**
  * NodeContract interface
  */

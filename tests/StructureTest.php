@@ -1,9 +1,8 @@
 <?php
 
-namespace Opmvpc\Constructs;
+namespace Opmvpc\Constructs\Tests;
 
 use Opmvpc\Constructs\Construct;
-use Opmvpc\Constructs\Test\BaseTestCase;
 use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
 
 class StructureTest extends BaseTestCase

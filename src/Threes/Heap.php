@@ -20,13 +20,15 @@ abstract class Heap extends Structure implements ThreeContract
 
             if ($child > $this->size) {
                 continue;
-            } if ($this->elements[$child]['value'] > $currentItemValue) {
+            }
+            if ($this->elements[$child]['value'] > $currentItemValue) {
                 return false;
             }
 
             if ($child + 1 > $this->size) {
                 continue;
-            } if ($this->elements[$child + 1]['value'] > $currentItemValue) {
+            }
+            if ($this->elements[$child + 1]['value'] > $currentItemValue) {
                 return false;
             }
         }

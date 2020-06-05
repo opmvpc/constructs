@@ -61,6 +61,7 @@ final class LinkedStack extends Structure implements StackContract
 
         if (is_null($this->head)) {
             $this->head = $newNode;
+
             return $this;
         }
 
@@ -81,6 +82,7 @@ final class LinkedStack extends Structure implements StackContract
     {
         if ($this->isEmpty()) {
             throw new OutOfBoundsException('Constructs LinkedStack.pop()');
+
             return $this;
         }
 

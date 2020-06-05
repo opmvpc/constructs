@@ -1,10 +1,10 @@
 <?php
 
-namespace Opmvpc\Constructs\Test\Queue;
+namespace Opmvpc\Constructs\Tests\Queue;
 
-use OutOfBoundsException;
 use Opmvpc\Constructs\Queues\ArrayQueue;
-use Opmvpc\Constructs\Test\BaseTestCase;
+use Opmvpc\Constructs\Tests\BaseTestCase;
+use OutOfBoundsException;
 
 class ArrayQueueTest extends BaseTestCase
 {
@@ -12,7 +12,8 @@ class ArrayQueueTest extends BaseTestCase
 
     private function createStructure()
     {
-        return ArrayQueue::make();;
+        return ArrayQueue::make();
+        ;
     }
 
     public function testConstruct()

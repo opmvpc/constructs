@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Opmvpc\Constructs\Test;
+namespace Opmvpc\Constructs\Tests;
 
 use PHPUnit\Framework\TestCase;
 

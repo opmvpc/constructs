@@ -42,7 +42,8 @@ final class ArrayQueue extends Structure implements QueueContract
     /**
      * Base constructor
      */
-    private function __construct() {
+    private function __construct()
+    {
         $this->size = 0;
         $this->head = 0;
         $this->last = -1;
@@ -115,7 +116,9 @@ final class ArrayQueue extends Structure implements QueueContract
         } catch (\Throwable $exception) {
             $message = 'Constructs ArrayQueue.dequeue() ';
             $message .= $exception->getMessage();
+
             throw new OutOfBoundsException($message);
+
             return;
         }
 
@@ -139,6 +142,7 @@ final class ArrayQueue extends Structure implements QueueContract
         } catch (\Throwable $exception) {
             $message = 'Constructs ArrayQueue.peek() ';
             $message .= $exception->getMessage();
+
             throw new OutOfBoundsException($message);
         }
     }
@@ -152,11 +156,10 @@ final class ArrayQueue extends Structure implements QueueContract
     {
         $array = [];
 
-        for ($i=$this->head; $i <= $this->last; $i++) {
+        for ($i = $this->head; $i <= $this->last; $i++) {
             $array[] = $this->elements[$i];
         }
 
         return $array;
     }
-
 }

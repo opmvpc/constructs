@@ -1,15 +1,16 @@
 <?php
 
-namespace Opmvpc\Constructs\Test\Nodes;
+namespace Opmvpc\Constructs\Tests\Nodes;
 
 use Opmvpc\Constructs\Nodes\Leaf;
-use Opmvpc\Constructs\Test\BaseTestCase;
+use Opmvpc\Constructs\Tests\BaseTestCase;
 use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
 
 /**
  * @group leaf
  */
-class LeafTest extends BaseTestCase {
+class LeafTest extends BaseTestCase
+{
     use VarDumperTestTrait;
 
     const TEST_INT_KEY = 1;

@@ -1,10 +1,10 @@
 <?php
 
-namespace Opmvpc\Constructs\Test\Threes;
+namespace Opmvpc\Constructs\Tests\Threes;
 
-use OutOfBoundsException;
+use Opmvpc\Constructs\Tests\BaseTestCase;
 use Opmvpc\Constructs\Threes\Heaps\ArrayHeap;
-use Opmvpc\Constructs\Test\BaseTestCase;
+use OutOfBoundsException;
 
 class ArrayHeapTest extends BaseTestCase
 {

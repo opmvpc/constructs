@@ -1,12 +1,12 @@
 <?php
 
-namespace Opmvpc\Constructs\Test\Nodes;
+namespace Opmvpc\Constructs\Tests\Nodes;
 
 use Opmvpc\Constructs\Nodes\LinkedNode;
-use Opmvpc\Constructs\Test\BaseTestCase;
+use Opmvpc\Constructs\Tests\BaseTestCase;
 
-class LinkedNodeTest extends BaseTestCase {
-
+class LinkedNodeTest extends BaseTestCase
+{
     const TEST_VALUE = 1;
 
     private function createItem()

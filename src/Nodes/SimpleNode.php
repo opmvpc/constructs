@@ -4,7 +4,8 @@ namespace Opmvpc\Constructs\Nodes;
 
 final class SimpleNode extends Node
 {
-    private function __construct($value) {
+    private function __construct($value)
+    {
         $this->container = [
             "value" => $value,
         ];

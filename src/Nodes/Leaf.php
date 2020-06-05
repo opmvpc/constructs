@@ -6,7 +6,8 @@ use Opmvpc\Constructs\Contracts\NodeContract;
 
 final class Leaf extends Node
 {
-    private function __construct($key, $value = null, NodeContract $parent = null) {
+    private function __construct($key, $value = null, NodeContract $parent = null)
+    {
         $this->container = [
             "parent" => $parent,
             "left" => null,
@@ -50,5 +51,4 @@ final class Leaf extends Node
     {
         return $this->key() <=> $leaf->key();
     }
-
 }

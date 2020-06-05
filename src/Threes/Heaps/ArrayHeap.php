@@ -116,6 +116,7 @@ final class ArrayHeap extends Heap
         } catch (\Throwable $exception) {
             $message = 'Constructs ArrayList.get() ';
             $message .= $exception->getMessage();
+
             throw new OutOfBoundsException($message);
         }
     }
@@ -129,7 +130,7 @@ final class ArrayHeap extends Heap
     {
         $array = [];
 
-        for ($i=1; $i <= $this->size; $i++) {
+        for ($i = 1; $i <= $this->size; $i++) {
             $array[] = $this->elements[$i]['value'];
         }
 
@@ -154,14 +155,16 @@ final class ArrayHeap extends Heap
 
         if ($child > $this->size) {
             return;
-        } if ($this->elements[$child]['value'] > $currentItemValue) {
+        }
+        if ($this->elements[$child]['value'] > $currentItemValue) {
             $this->swap($child, $i);
             $this->siftDown($child);
         }
 
         if ($child + 1 > $this->size) {
             return;
-        } if ($this->elements[$child + 1]['value'] > $currentItemValue) {
+        }
+        if ($this->elements[$child + 1]['value'] > $currentItemValue) {
             $this->swap($child + 1, $i);
             $this->siftDown($child + 1);
         }

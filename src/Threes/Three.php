@@ -2,14 +2,11 @@
 
 namespace Opmvpc\Constructs\Threes;
 
-use Closure;
 use BadMethodCallException;
-use Opmvpc\Constructs\Structure;
-use Opmvpc\Constructs\Nodes\Leaf;
-use Opmvpc\Constructs\Nodes\SimpleNode;
-use Opmvpc\Constructs\Contracts\NodeContract;
-use Opmvpc\Constructs\Contracts\ThreeContract;
 use Opmvpc\Constructs\Contracts\SearchContract;
+use Opmvpc\Constructs\Contracts\ThreeContract;
+use Opmvpc\Constructs\Nodes\Leaf;
+use Opmvpc\Constructs\Structure;
 
 abstract class Three extends Structure implements ThreeContract, SearchContract
 {
@@ -28,6 +25,7 @@ abstract class Three extends Structure implements ThreeContract, SearchContract
 
         if (is_null($this->root)) {
             $this->root = $newLeaf;
+
             return $this;
         }
 
@@ -54,6 +52,7 @@ abstract class Three extends Structure implements ThreeContract, SearchContract
         } else {
             $parent['right'] = $newLeaf;
         }
+
         return $this;
     }
 
@@ -107,7 +106,8 @@ abstract class Three extends Structure implements ThreeContract, SearchContract
         }
     }
 
-    public function min(?Leaf $leaf = null): Leaf {
+    public function min(?Leaf $leaf = null): Leaf
+    {
         if (is_null($leaf)) {
             $leaf = $this->root;
         }
@@ -119,7 +119,8 @@ abstract class Three extends Structure implements ThreeContract, SearchContract
         return $leaf;
     }
 
-    public function max(?Leaf $leaf = null): Leaf {
+    public function max(?Leaf $leaf = null): Leaf
+    {
         if (is_null($leaf)) {
             $leaf = $this->root;
         }
@@ -131,7 +132,8 @@ abstract class Three extends Structure implements ThreeContract, SearchContract
         return $leaf;
     }
 
-    public function successor(Leaf $leaf): ?Leaf {
+    public function successor(Leaf $leaf): ?Leaf
+    {
         $newLeaf = Leaf::make(null);
 
         if (! is_null($leaf->right())) {
@@ -145,7 +147,6 @@ abstract class Three extends Structure implements ThreeContract, SearchContract
         }
 
         return $newLeaf;
-
     }
 
     public function search($key, ?Leaf $leaf): ?Leaf
@@ -186,7 +187,7 @@ abstract class Three extends Structure implements ThreeContract, SearchContract
         $arrayToSort = $array;
         sort($arrayToSort);
 
-        for ($i=0; $i < count($array); $i++) {
+        for ($i = 0; $i < count($array); $i++) {
             if ($array[$i] !== $arrayToSort[$i]) {
                 return false;
             }
@@ -214,7 +215,8 @@ abstract class Three extends Structure implements ThreeContract, SearchContract
             $this->isBinaryThree($leaf->left(), $isBinaryThree);
             if ($leaf->left() !== null && $leaf->key() < $leaf->left()->key()) {
                 $isBinaryThree = false;
-            } if ($leaf->right() !== null && $leaf->key() > $leaf->right()->key()) {
+            }
+            if ($leaf->right() !== null && $leaf->key() > $leaf->right()->key()) {
                 $isBinaryThree = false;
             }
             $this->isBinaryThree($leaf->right(), $isBinaryThree);

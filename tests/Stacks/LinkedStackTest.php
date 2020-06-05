@@ -1,10 +1,10 @@
 <?php
 
-namespace Opmvpc\Constructs\Test\Stacks;
+namespace Opmvpc\Constructs\Tests\Stacks;
 
-use OutOfBoundsException;
 use Opmvpc\Constructs\Stacks\LinkedStack;
-use Opmvpc\Constructs\Test\BaseTestCase;
+use Opmvpc\Constructs\Tests\BaseTestCase;
+use OutOfBoundsException;
 
 class LinkedStackTest extends BaseTestCase
 {

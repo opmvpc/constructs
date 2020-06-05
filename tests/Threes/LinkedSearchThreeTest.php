@@ -1,11 +1,11 @@
 <?php
 
-namespace Opmvpc\Constructs\Test\Threes;
+namespace Opmvpc\Constructs\Tests\Threes;
 
-use OutOfBoundsException;
 use BadMethodCallException;
-use Opmvpc\Constructs\Test\BaseTestCase;
+use Opmvpc\Constructs\Tests\BaseTestCase;
 use Opmvpc\Constructs\Threes\SearchThrees\LinkedSearchThree;
+use OutOfBoundsException;
 
 class LinkedSearchThreeTest extends BaseTestCase
 {
@@ -42,12 +42,12 @@ class LinkedSearchThreeTest extends BaseTestCase
     {
         $three = $this->createStructure()
             ->insert(3, "hello");
-            $three->insert(6, "hello");
-            $three->insert(4, "hello");
-            $three->insert(1, "hello");
-            $three->insert(12, "hello");
-            $three->insert(9, "hello");
-            $three->insert(3, "hello");
+        $three->insert(6, "hello");
+        $three->insert(4, "hello");
+        $three->insert(1, "hello");
+        $three->insert(12, "hello");
+        $three->insert(9, "hello");
+        $three->insert(3, "hello");
 
         $this->assertEquals(6, count($three->keysArray()));
         $this->assertEquals([1, 3, 4, 6, 9, 12], $three->keysArray());
@@ -86,7 +86,7 @@ class LinkedSearchThreeTest extends BaseTestCase
             ->insert(9, "hello")
             ->insert(3, "hello");
 
-            $this->assertEquals(4, $three->min($three->root()->right())->key());
+        $this->assertEquals(4, $three->min($three->root()->right())->key());
     }
 
     public function testMax()
@@ -254,7 +254,7 @@ class LinkedSearchThreeTest extends BaseTestCase
         $size = 100;
         $three = $this->createStructure();
 
-        for ($i=0; $i < $size; $i++) {
+        for ($i = 0; $i < $size; $i++) {
             $randomNumber = rand(1, 1000);
             $three->insert($randomNumber, 0);
         }

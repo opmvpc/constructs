@@ -1,10 +1,10 @@
 <?php
 
-namespace Opmvpc\Constructs\Test\Stacks;
+namespace Opmvpc\Constructs\Tests\Stacks;
 
-use OutOfBoundsException;
 use Opmvpc\Constructs\Stacks\ArrayStack;
-use Opmvpc\Constructs\Test\BaseTestCase;
+use Opmvpc\Constructs\Tests\BaseTestCase;
+use OutOfBoundsException;
 
 class ArrayStackTest extends BaseTestCase
 {
@@ -12,7 +12,8 @@ class ArrayStackTest extends BaseTestCase
 
     private function createStructure()
     {
-        return ArrayStack::make();;
+        return ArrayStack::make();
+        ;
     }
 
     public function testConstruct()

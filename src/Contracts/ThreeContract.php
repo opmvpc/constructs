@@ -2,8 +2,6 @@
 
 namespace Opmvpc\Constructs\Contracts;
 
-use Opmvpc\Constructs\Nodes\SimpleNode;
-
 /**
  * ThreeContract interface
  */
